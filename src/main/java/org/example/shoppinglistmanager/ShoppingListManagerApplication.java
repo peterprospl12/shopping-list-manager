@@ -1,17 +1,16 @@
 package org.example.shoppinglistmanager;
 
 import org.example.shoppinglistmanager.dto.ProductDTO;
-import org.example.shoppinglistmanager.model.Product;
-import org.example.shoppinglistmanager.model.ShoppingList;
-import org.example.shoppinglistmanager.model.User;
-import org.example.shoppinglistmanager.model.enums.Category;
-import org.example.shoppinglistmanager.model.enums.Status;
+import org.example.shoppinglistmanager.entity.Product;
+import org.example.shoppinglistmanager.entity.ShoppingList;
+import org.example.shoppinglistmanager.entity.User;
+import org.example.shoppinglistmanager.entity.enums.Category;
+import org.example.shoppinglistmanager.entity.enums.Status;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.*;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.*;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.TimeUnit;
@@ -170,20 +169,27 @@ public class ShoppingListManagerApplication {
     public static void main(String[] args) {
         SpringApplication.run(ShoppingListManagerApplication.class, args);
         List<User> users = new ArrayList<>();
+
+        // task 2
         initialize(users);
 
         Set<ShoppingList> shoppingLists = new HashSet<>();
+        // task 3
         createSet(users, shoppingLists);
 
+        // task 4
         filterAndSort(shoppingLists);
 
         List<ProductDTO> productDTOS = new ArrayList<>();
+        // task 5
         convertIntoDTO(shoppingLists, productDTOS);
 
         List<User> usersToSerialize = new ArrayList<>(users);
+        // task 6
         serializeUsers(usersToSerialize);
         deserializeUsers(usersToSerialize);
 
+        // task 7
         ForkJoinPool pool = getForkJoinPool(users);
         try {
             pool.awaitTermination(10, TimeUnit.SECONDS);

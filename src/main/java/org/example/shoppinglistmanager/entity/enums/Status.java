@@ -1,4 +1,4 @@
-package org.example.shoppinglistmanager.model.enums;
+package org.example.shoppinglistmanager.entity.enums;
 
 public enum Status {
     ACTIVE,
