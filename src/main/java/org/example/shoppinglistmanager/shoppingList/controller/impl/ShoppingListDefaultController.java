@@ -11,6 +11,7 @@ import org.example.shoppinglistmanager.shoppingList.function.shoppingList.Shoppi
 import org.example.shoppinglistmanager.shoppingList.service.api.ShoppingListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.NoSuchElementException;
 import java.util.UUID;
@@ -53,8 +54,9 @@ public class ShoppingListDefaultController implements ShoppingListController {
                 .orElseThrow(NoSuchElementException::new);
     }
 
+    @Transactional
     @Override
-    public GetShoppingListResponse getShoppingList(UUID shoppingListId) {
+    public GetShoppingListResponse  getShoppingList(UUID shoppingListId) {
         return service.find(shoppingListId)
                 .map(shoppingListToResponse)
                 .orElseThrow(NoSuchElementException::new);

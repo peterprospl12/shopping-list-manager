@@ -1,0 +1,11 @@
+User1: 83b1f976-b4c2-45db-9c8b-6bb5f2c29d33
+User2: 26576161-5cb9-4bcb-9cf5-08683c4ce1f9
+User3: 61302991-1a0f-467b-ba8d-b0ba6dcb8dd3
+ShoppingList1: 06194590-43e8-4054-933f-39388d6fe70f
+ShoppingList2: fa4e8ab0-4fb7-4c86-adb1-2b97b3b00db3
+ShoppingList3: d5079bf5-9f10-442c-bb37-68c02370996e
+Product1: aa6ba4c2-e812-4797-8c19-26f2dfb7ac6c
+Product2: 2bc95b6a-fe1c-4ec7-844a-85532da7e5b7
+Product3: fd549c50-c2d2-48fd-bc57-88101240f332
+Product4: 13598c9d-95bd-49f3-9047-b17d46071bde
+Product5: e28d4c4f-eb78-40bf-bab9-bd2903dee414

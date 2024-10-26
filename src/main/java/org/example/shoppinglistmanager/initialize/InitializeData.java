@@ -14,6 +14,9 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 
 @Component
@@ -149,6 +152,21 @@ public class InitializeData  implements InitializingBean {
         productService.create(product4);
         productService.create(product5);
 
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("uuids.txt"))) {
+            writer.write("User1: " + user1.getId() + "\n");
+            writer.write("User2: " + user2.getId() + "\n");
+            writer.write("User3: " + user3.getId() + "\n");
+            writer.write("ShoppingList1: " + shoppingList1.getId() + "\n");
+            writer.write("ShoppingList2: " + shoppingList2.getId() + "\n");
+            writer.write("ShoppingList3: " + shoppingList3.getId() + "\n");
+            writer.write("Product1: " + product1.getId() + "\n");
+            writer.write("Product2: " + product2.getId() + "\n");
+            writer.write("Product3: " + product3.getId() + "\n");
+            writer.write("Product4: " + product4.getId() + "\n");
+            writer.write("Product5: " + product5.getId() + "\n");
+        } catch (IOException e) {
+            logger.error("Error writing UUIDs to file", e);
+        }
         logger.info("Data saved successfully");
     }
 

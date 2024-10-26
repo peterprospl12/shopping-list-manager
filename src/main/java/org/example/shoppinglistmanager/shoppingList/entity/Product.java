@@ -40,7 +40,7 @@ public class Product implements Serializable {
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "shopping_list_id")
     private ShoppingList shoppingList;
 }

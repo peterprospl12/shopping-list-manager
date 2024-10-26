@@ -37,12 +37,12 @@ public class ShoppingList implements Serializable {
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
     @Builder.Default
-    @OneToMany(mappedBy = "shoppingList", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "shoppingList", cascade = CascadeType.ALL)
     private List<Product> products = new ArrayList<>();
 
 }

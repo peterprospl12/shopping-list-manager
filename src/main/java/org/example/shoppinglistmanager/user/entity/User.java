@@ -41,7 +41,7 @@ public class User implements Serializable {
     private LocalDate birthDate;
 
     @Builder.Default
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<ShoppingList> shoppingLists = new ArrayList<>();
 
 }
