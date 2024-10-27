@@ -1,5 +1,6 @@
 package org.example.shoppinglistmanager.shoppingList.controller.impl;
 
+import lombok.extern.java.Log;
 import org.example.shoppinglistmanager.shoppingList.controller.api.ProductController;
 import org.example.shoppinglistmanager.shoppingList.dto.product.GetProductResponse;
 import org.example.shoppinglistmanager.shoppingList.dto.product.GetProductsResponse;
@@ -9,12 +10,16 @@ import org.example.shoppinglistmanager.shoppingList.function.product.ProductsToR
 import org.example.shoppinglistmanager.shoppingList.function.product.RequestToProductFunction;
 import org.example.shoppinglistmanager.shoppingList.service.api.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
-@Controller
+@RestController
+@Log
 public class ProductDefaultController implements ProductController {
     private final ProductService service;
     private final ProductToResponseFunction productToResponse;
@@ -41,21 +46,28 @@ public class ProductDefaultController implements ProductController {
     public GetProductsResponse getShoppingListProducts(UUID shoppingListId) {
         return service.findAllByShoppingList(shoppingListId)
                 .map(productsToResponse)
-                .orElseThrow(NoSuchElementException::new);
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    @Override
+    public GetProductsResponse getUserProducts(UUID userId) {
+        return productsToResponse.apply(
+            service.findAllByUser(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND))
+        );
     }
 
     @Override
     public GetProductResponse getProduct(UUID productId) {
         return service.find(productId)
                 .map(productToResponse)
-                .orElseThrow(NoSuchElementException::new);
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @Override
     public GetProductResponse getShoppingListProduct(UUID shoppingListId, UUID productId) {
         return service.findByShoppingList(shoppingListId, productId)
                 .map(productToResponse)
-                .orElseThrow(NoSuchElementException::new);
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @Override
@@ -65,7 +77,10 @@ public class ProductDefaultController implements ProductController {
 
     @Override
     public void deleteProduct(UUID id){
-        service.delete(id);
+        service.find(id).ifPresentOrElse(
+            product -> service.delete(id),
+            () -> { throw new ResponseStatusException(HttpStatus.NOT_FOUND); }
+        );
     }
 
 }

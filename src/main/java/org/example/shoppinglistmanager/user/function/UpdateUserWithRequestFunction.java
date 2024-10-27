@@ -3,10 +3,12 @@ package org.example.shoppinglistmanager.user.function;
 import org.example.shoppinglistmanager.user.dto.PatchUserRequest;
 import org.example.shoppinglistmanager.user.dto.PutUserRequest;
 import org.example.shoppinglistmanager.user.entity.User;
+import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 import java.util.function.BiFunction;
 
+@Component
 public class UpdateUserWithRequestFunction implements BiFunction<User, PatchUserRequest, User> {
 
     @Override

@@ -2,9 +2,11 @@ package org.example.shoppinglistmanager.user.function;
 
 import org.example.shoppinglistmanager.user.dto.GetUserResponse;
 import org.example.shoppinglistmanager.user.entity.User;
+import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
 
+@Component
 public class UserToResponseFunction implements Function<User, GetUserResponse> {
 
     @Override

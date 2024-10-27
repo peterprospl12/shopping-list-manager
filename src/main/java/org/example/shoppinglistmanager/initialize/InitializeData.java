@@ -18,6 +18,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Component
 public class InitializeData  implements InitializingBean {
@@ -39,6 +40,7 @@ public class InitializeData  implements InitializingBean {
         logger.info("Initializing data...");
 
         User user1 = User.builder()
+                .id(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a6"))
                 .email("marekandrysiak@wp.pl")
                 .password("password1")
                 .name("Marek")
@@ -47,6 +49,7 @@ public class InitializeData  implements InitializingBean {
                 .build();
 
         User user2 = User.builder()
+                .id(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a7"))
                 .email("jerzykondysiak@gmail.com")
                 .password("password2")
                 .name("Jerzy")
@@ -55,6 +58,7 @@ public class InitializeData  implements InitializingBean {
                 .build();
 
         User user3 = User.builder()
+                .id(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a8"))
                 .email("patrykgrzyb@o2.pl")
                 .password("password3")
                 .name("Patryk")
@@ -63,6 +67,7 @@ public class InitializeData  implements InitializingBean {
                 .build();
 
         ShoppingList shoppingList1 = ShoppingList.builder()
+                .id(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a9"))
                 .name("List1224")
                 .date(LocalDate.ofYearDay(2024, 13))
                 .status(Status.ACTIVE)
@@ -71,6 +76,7 @@ public class InitializeData  implements InitializingBean {
         user1.getShoppingLists().add(shoppingList1);
 
         ShoppingList shoppingList2 = ShoppingList.builder()
+                .id(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00b0"))
                 .name("List255")
                 .date(LocalDate.ofYearDay(1995,15))
                 .status(Status.ACTIVE)
@@ -79,6 +85,7 @@ public class InitializeData  implements InitializingBean {
         user2.getShoppingLists().add(shoppingList2);
 
         ShoppingList shoppingList3 = ShoppingList.builder()
+                .id(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00b1"))
                 .name("List311")
                 .date(LocalDate.ofYearDay(2000, 25))
                 .status(Status.ARCHIVED)
@@ -87,6 +94,7 @@ public class InitializeData  implements InitializingBean {
         user3.getShoppingLists().add(shoppingList3);
 
         Product product1 = Product.builder()
+                .id(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00b2"))
                 .name("Product1")
                 .category(Category.DRINKS)
                 .price(10)
@@ -97,6 +105,7 @@ public class InitializeData  implements InitializingBean {
         shoppingList1.getProducts().add(product1);
 
         Product product2 = Product.builder()
+                .id(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00b3"))
                 .name("Product2")
                 .category(Category.FOOD)
                 .price(20)
@@ -107,6 +116,7 @@ public class InitializeData  implements InitializingBean {
         shoppingList1.getProducts().add(product2);
 
         Product product3 = Product.builder()
+                .id(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00b4"))
                 .name("Product3")
                 .category(Category.HOUSEHOLD)
                 .price(30)
@@ -117,6 +127,7 @@ public class InitializeData  implements InitializingBean {
         shoppingList2.getProducts().add(product3);
 
         Product product4 = Product.builder()
+                .id(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00b5"))
                 .name("Product4")
                 .category(Category.OTHER)
                 .price(40)
@@ -127,6 +138,7 @@ public class InitializeData  implements InitializingBean {
         shoppingList2.getProducts().add(product4);
 
         Product product5 = Product.builder()
+                .id(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00b6"))
                 .name("Product5")
                 .category(Category.DRINKS)
                 .price(50)

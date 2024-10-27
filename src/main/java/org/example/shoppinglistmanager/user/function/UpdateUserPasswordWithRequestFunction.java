@@ -3,10 +3,12 @@ package org.example.shoppinglistmanager.user.function;
 import org.example.shoppinglistmanager.user.dto.PutPasswordRequest;
 import org.example.shoppinglistmanager.user.dto.PutUserRequest;
 import org.example.shoppinglistmanager.user.entity.User;
+import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 import java.util.function.BiFunction;
 
+@Component
 public class UpdateUserPasswordWithRequestFunction implements BiFunction<User, PutPasswordRequest, User> {
 
     @Override

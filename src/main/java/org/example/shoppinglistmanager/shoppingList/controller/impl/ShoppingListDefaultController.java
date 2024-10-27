@@ -10,13 +10,16 @@ import org.example.shoppinglistmanager.shoppingList.function.shoppingList.Shoppi
 import org.example.shoppinglistmanager.shoppingList.function.shoppingList.ShoppingListsToResponseFunction;
 import org.example.shoppinglistmanager.shoppingList.service.api.ShoppingListService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
-@Controller
+@RestController
 public class ShoppingListDefaultController implements ShoppingListController {
     private final ShoppingListService service;
     private final ShoppingListToResponseFunction shoppingListToResponse;
@@ -44,29 +47,23 @@ public class ShoppingListDefaultController implements ShoppingListController {
     public GetShoppingListsResponse getUserShoppingLists(UUID userId) {
         return service.findAllByUser(userId)
                 .map(shoppingListsToResponse)
-                .orElseThrow(NoSuchElementException::new);
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    @Override
-    public GetShoppingListsResponse getUserShoppingListsByStatus(UUID userId, Status status) {
-        return service.findAllByUserAndStatus(userId, status)
-                .map(shoppingListsToResponse)
-                .orElseThrow(NoSuchElementException::new);
-    }
 
     @Transactional
     @Override
     public GetShoppingListResponse  getShoppingList(UUID shoppingListId) {
         return service.find(shoppingListId)
                 .map(shoppingListToResponse)
-                .orElseThrow(NoSuchElementException::new);
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @Override
     public GetShoppingListResponse getUserShoppingList(UUID userId, UUID shoppingListId) {
         return service.findByUserAndName(userId, this.getShoppingList(shoppingListId).getName())
                 .map(shoppingListToResponse)
-                .orElseThrow(NoSuchElementException::new);
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @Override
@@ -76,6 +73,11 @@ public class ShoppingListDefaultController implements ShoppingListController {
 
     @Override
     public void deleteShoppingList(UUID id) {
-        service.delete(id);
+        service.find(id).ifPresentOrElse(
+                shoppingList -> service.delete(id),
+                () -> {
+                    throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+                }
+        );
     }
 }

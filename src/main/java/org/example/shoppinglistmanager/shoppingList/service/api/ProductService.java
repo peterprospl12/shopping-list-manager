@@ -15,6 +15,7 @@ public interface ProductService {
     List<Product> findAll(ShoppingList shoppingList);
 
     Optional<List<Product>> findAllByShoppingList(UUID shoppingListId);
+    Optional<List<Product>> findAllByUser(UUID userId);
 
     void create(Product product);
     void update(Product product);
