@@ -68,6 +68,12 @@ public class ShoppingListDefaultService implements ShoppingListService {
                 .map(user -> shoppingListRepository.findByUserAndName(user, name));
     }
 
+    @Override
+    public Optional<ShoppingList> findUserShoppingList(UUID userId, UUID shoppingListId){
+        return userRepository.findById(userId)
+                .map(user -> shoppingListRepository.findByIdAndUser(shoppingListId, user));
+    }
+
 
     @Override
     public void create(ShoppingList shoppingList){

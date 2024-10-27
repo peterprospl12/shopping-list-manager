@@ -2,6 +2,7 @@ package org.example.shoppinglistmanager.user.controller.api;
 
 import org.example.shoppinglistmanager.user.dto.GetUserResponse;
 import org.example.shoppinglistmanager.user.dto.GetUsersResponse;
+import org.example.shoppinglistmanager.user.dto.PatchUserRequest;
 import org.example.shoppinglistmanager.user.dto.PutUserRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +38,15 @@ public interface UserController {
             UUID id,
             @RequestBody
             PutUserRequest request
+    );
+
+    @PatchMapping("/api/users/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    void patchUser(
+            @PathVariable("id")
+            UUID id,
+            @RequestBody
+            PatchUserRequest request
     );
 
 }

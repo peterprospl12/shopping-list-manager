@@ -1,9 +1,56 @@
 ### Get all shopping lists
 GET http://localhost:8080/api/shopping_lists
 
-<> 2024-10-27T225855.200.json
-<> 2024-10-27T225455.200.json
-<> 2024-10-27T225341.200.json
+### Get a shopping list
+GET http://localhost:8080/api/shopping_lists/c4804e0f-769e-4ab9-9ebe-0578fb4f00a9
+
+
+### Get user shopping lists
+GET http://localhost:8080/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f00a6/shopping_lists
+
+
+### Get user shopping list with status
+GET http://localhost:8080/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f00a6/shopping_lists?
+    status=ACTIVE
+
+
+### Get user specific shopping list
+GET http://localhost:8080/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f00a6/shopping_lists/c4804e0f-769e-4ab9-9ebe-0578fb4f00a9
+
+### Get all products
+GET http://localhost:8080/api/products
+
+### Get a product
+GET http://localhost:8080/api/products/c4804e0f-769e-4ab9-9ebe-0578fb4f00b4
+
+### Get shopping list products
+GET http://localhost:8080/api/shopping_lists/c4804e0f-769e-4ab9-9ebe-0578fb4f00b0/products
+
+### Get shopping list specific product
+GET http://localhost:8080/api/shopping_lists/c4804e0f-769e-4ab9-9ebe-0578fb4f00b0/products/c4804e0f-769e-4ab9-9ebe-0578fb4f00b4
+
+### Get user products
+GET http://localhost:8080/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f00a6/products
+
+
+### Get all users
+GET http://localhost:8080/api/users
+
+### Get a user
+GET http://localhost:8080/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f00a6
+
+### Put a new user
+PUT http://localhost:8080/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f00b5
+Content-Type: application/json
+Authorization: Basic a2V2aW46dXNlcnVzZXI=
+
+{
+  "name": "Marek",
+  "surname": "Grzyb",
+  "email": "marek@wp.pl",
+  "password": "password",
+  "birthDate": "1990-10-27T22:46:43.404Z"
+}
 
 ### Put a new shopping list
 PUT http://localhost:8080/api/shopping_lists/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76
@@ -14,52 +61,8 @@ Authorization: Basic a2V2aW46dXNlcnVzZXI=
   "name": "New list",
   "date": "2024-10-27T22:46:43.404Z",
   "status": "ACTIVE",
-  "user": "c4804e0f-769e-4ab9-9ebe-0578fb4f00a6"
+  "user": "c4804e0f-769e-4ab9-9ebe-0578fb4f00b5"
 }
-
-### Delete a shopping list
-DELETE http://localhost:8080/api/shopping_lists/c4804e0f-769e-4ab9-9ebe-0578fb4f00a9
-
-<> 2024-10-27T225455.404.json
-<> 2024-10-27T225341.404.json
-
-### Get a shopping list
-GET http://localhost:8080/api/shopping_lists/c4804e0f-769e-4ab9-9ebe-0578fb4f00a9
-
-<> 2024-10-27T225855.404.json
-<> 2024-10-27T225455-1.404.json
-<> 2024-10-27T225341-1.404.json
-
-### Get user shopping lists
-GET http://localhost:8080/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f00a6/shopping_lists
-
-<> 2024-10-27T225855-1.200.json
-<> 2024-10-27T225456.200.json
-<> 2024-10-27T225341-1.200.json
-
-### Get user shopping list with status
-GET http://localhost:8080/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f00a6/shopping_lists?
-    status={{$random.alphanumeric(8)}}
-
-<> 2024-10-27T225855-2.200.json
-<> 2024-10-27T225456-1.200.json
-<> 2024-10-27T225341-2.200.json
-
-### Get user specific shopping list
-GET http://localhost:8080/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f00a6/shopping_lists/c4804e0f-769e-4ab9-9ebe-0578fb4f00a9
-
-<> 2024-10-27T225856.404.json
-<> 2024-10-27T225456.404.json
-<> 2024-10-27T225342.404.json
-<> 2024-10-27T225208.404.json
-
-### Get all products
-GET http://localhost:8080/api/products
-
-<> 2024-10-27T225856.200.json
-<> 2024-10-27T225456-2.200.json
-<> 2024-10-27T225342.200.json
-<> 2024-10-27T225208-1.200.json
 
 ### Put a new product
 PUT http://localhost:8080/api/products/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76
@@ -72,72 +75,41 @@ Authorization: Basic a2V2aW46dXNlcnVzZXI=
   "price": 1.5,
   "quantity": 1,
   "isBought": false,
-  "shoppingList": "c4804e0f-769e-4ab9-9ebe-0578fb4f00a9"
+  "shoppingList": "f5875513-bf7b-4ae1-b8a5-5b70a1b90e76"
 }
 
-<> 2024-10-27T225856.500.json
-<> 2024-10-27T225456.500.json
-<> 2024-10-27T225342.500.json
-<> 2024-10-27T225208.500.json
+### Delete a user
+DELETE http://localhost:8080/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f00a7
+
+### Delete a shopping list
+DELETE http://localhost:8080/api/shopping_lists/c4804e0f-769e-4ab9-9ebe-0578fb4f00a9
 
 ### Delete a product
 DELETE http://localhost:8080/api/products/c4804e0f-769e-4ab9-9ebe-0578fb4f00b6
-
-<> 2024-10-27T225457.404.json
-<> 2024-10-27T225342-1.404.json
-<> 2024-10-27T225208-1.404.json
-
-### Get a product
-GET http://localhost:8080/api/products/c4804e0f-769e-4ab9-9ebe-0578fb4f00b4
-
-<> 2024-10-27T225856-1.200.json
-<> 2024-10-27T225457.200.json
-<> 2024-10-27T225342-1.200.json
-<> 2024-10-27T225208-2.200.json
-
-### Get shopping list products
-GET http://localhost:8080/api/shopping_lists/c4804e0f-769e-4ab9-9ebe-0578fb4f00b0/products
-
-<> 2024-10-27T225856-2.200.json
-<> 2024-10-27T225457-1.200.json
-<> 2024-10-27T225342-2.200.json
-<> 2024-10-27T225208-3.200.json
-
-### Get shopping list specific product
-GET http://localhost:8080/api/shopping_lists/c4804e0f-769e-4ab9-9ebe-0578fb4f00b0/products/c4804e0f-769e-4ab9-9ebe-0578fb4f00b4
-
-<> 2024-10-27T225856-3.200.json
-<> 2024-10-27T225457-2.200.json
-<> 2024-10-27T225342-3.200.json
-<> 2024-10-27T225209.200.json
-
-### Get user products
-GET http://localhost:8080/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f00a6/products
-
-<> 2024-10-27T225857.200.json
-<> 2024-10-27T225457-3.200.json
-<> 2024-10-27T225342-4.200.json
-<> 2024-10-27T225209-1.200.json
 
 
 ### Get all users
 GET http://localhost:8080/api/users
 
-### Get a user
-GET http://localhost:8080/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f00a6
+### Get a shopping list
+GET http://localhost:8080/api/shopping_lists/c4804e0f-769e-4ab9-9ebe-0578fb4f00a9
 
-### Put a new user
-PUT http://localhost:8080/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f00xd
+### Get all shopping lists
+GET http://localhost:8080/api/shopping_lists
+
+### Get all products
+GET http://localhost:8080/api/products
+
+
+### Patch a user
+PATCH http://localhost:8080/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f00b5
 Content-Type: application/json
 Authorization: Basic a2V2aW46dXNlcnVzZXI=
 
 {
-  "name": "Marek",
-  "surname": "Grzyb",
-  "email": "marek@wp.pl",
-  "password": "password",
+  "name": "Marek1",
+  "surname": "Grzyb1",
+  "email": "patch1@gmail.com",
+  "password": "password1",
   "birthDate": "1990-10-27T22:46:43.404Z"
 }
-
-### Delete a user
-DELETE http://localhost:8080/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f00a6

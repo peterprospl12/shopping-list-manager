@@ -18,6 +18,7 @@ public interface ShoppingListService {
     Optional<List<ShoppingList>> findAllByUser(UUID userId);
     Optional<List<ShoppingList>> findAllByUserAndStatus(UUID userId, Status status);
     Optional<ShoppingList> findByUserAndName(UUID userId, String name);
+    Optional<ShoppingList> findUserShoppingList(UUID userId, UUID shoppingListId);
 
     void create(ShoppingList shoppingList);
     void update(ShoppingList shoppingList);

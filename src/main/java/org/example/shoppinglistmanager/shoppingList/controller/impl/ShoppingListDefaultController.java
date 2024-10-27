@@ -4,19 +4,16 @@ import org.example.shoppinglistmanager.shoppingList.controller.api.ShoppingListC
 import org.example.shoppinglistmanager.shoppingList.dto.shoppingList.GetShoppingListResponse;
 import org.example.shoppinglistmanager.shoppingList.dto.shoppingList.GetShoppingListsResponse;
 import org.example.shoppinglistmanager.shoppingList.dto.shoppingList.PutShoppingListRequest;
-import org.example.shoppinglistmanager.shoppingList.entity.enums.Status;
 import org.example.shoppinglistmanager.shoppingList.function.shoppingList.RequestToShoppingListFunction;
 import org.example.shoppinglistmanager.shoppingList.function.shoppingList.ShoppingListToResponseFunction;
 import org.example.shoppinglistmanager.shoppingList.function.shoppingList.ShoppingListsToResponseFunction;
 import org.example.shoppinglistmanager.shoppingList.service.api.ShoppingListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @RestController
@@ -61,7 +58,7 @@ public class ShoppingListDefaultController implements ShoppingListController {
 
     @Override
     public GetShoppingListResponse getUserShoppingList(UUID userId, UUID shoppingListId) {
-        return service.findByUserAndName(userId, this.getShoppingList(shoppingListId).getName())
+        return service.findUserShoppingList(userId, shoppingListId)
                 .map(shoppingListToResponse)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }

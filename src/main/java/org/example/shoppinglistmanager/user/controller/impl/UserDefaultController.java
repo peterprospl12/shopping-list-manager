@@ -4,8 +4,10 @@ import lombok.extern.java.Log;
 import org.example.shoppinglistmanager.user.controller.api.UserController;
 import org.example.shoppinglistmanager.user.dto.GetUserResponse;
 import org.example.shoppinglistmanager.user.dto.GetUsersResponse;
+import org.example.shoppinglistmanager.user.dto.PatchUserRequest;
 import org.example.shoppinglistmanager.user.dto.PutUserRequest;
 import org.example.shoppinglistmanager.user.function.RequestToUserFunction;
+import org.example.shoppinglistmanager.user.function.UpdateUserWithRequestFunction;
 import org.example.shoppinglistmanager.user.function.UserToResponseFunction;
 import org.example.shoppinglistmanager.user.function.UsersToResponseFunction;
 import org.example.shoppinglistmanager.user.service.api.UserService;
@@ -24,16 +26,21 @@ public class UserDefaultController implements UserController {
     private final UserToResponseFunction userToResponse;
     private final UsersToResponseFunction usersToResponse;
     private final RequestToUserFunction requestToUser;
+    private final UpdateUserWithRequestFunction updateUser;
+    private final UpdateUserWithRequestFunction updateUserWithRequestFunction;
 
     @Autowired
     public UserDefaultController(UserService service,
                                  UserToResponseFunction userToResponse,
                                  UsersToResponseFunction usersToResponse,
-                                 RequestToUserFunction requestToUser) {
+                                 RequestToUserFunction requestToUser,
+                                 UpdateUserWithRequestFunction updateUser, UpdateUserWithRequestFunction updateUserWithRequestFunction) {
         this.service = service;
         this.userToResponse = userToResponse;
         this.usersToResponse = usersToResponse;
         this.requestToUser = requestToUser;
+        this.updateUser = updateUser;
+        this.updateUserWithRequestFunction = updateUserWithRequestFunction;
     }
 
     @Override
@@ -64,5 +71,10 @@ public class UserDefaultController implements UserController {
     @Override
     public void putUser(UUID id, PutUserRequest request) {
         service.create(requestToUser.apply(id, request));
+    }
+
+    @Override
+    public void patchUser(UUID id, PatchUserRequest request) {
+        service.update(updateUserWithRequestFunction.apply(service.find(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)), request));
     }
 }
