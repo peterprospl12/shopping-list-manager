@@ -3,26 +3,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.4</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <groupId>org.example</groupId>
+        <artifactId>shopping-list-manager</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
 
-    <modules>
-        <module>product-service</module>
-        <module>user-service</module>
-        <module>shopping-list-service</module>
-    </modules>
-
-    <groupId>org.example</groupId>
-    <artifactId>shopping-list-manager</artifactId>
+    <groupId>shopping.list.manager</groupId>
+    <artifactId>product-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>shopping-list-manager</name>
-    <description>shopping-list-manager</description>
-    <packaging>pom</packaging>
-
-
+    <name>product-service</name>
+    <description>product-service</description>
     <url/>
     <licenses>
         <license/>

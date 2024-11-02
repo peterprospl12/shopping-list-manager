@@ -31,6 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
-/uuids.txt
-/mvnw
-/mvnw.cmd
+.mvn
+mvnw
+mvnw.cmd
