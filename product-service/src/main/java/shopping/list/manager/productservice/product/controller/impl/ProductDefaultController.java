@@ -69,6 +69,14 @@ public class ProductDefaultController implements ProductController {
 
     @Override
     public void putProduct(UUID id, PutProductRequest request) {
+        if (!service.userExists(request.getUser())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User does not exist");
+        }
+
+        if (!service.shoppingListExists(request.getShoppingList())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Shopping list does not exist");
+        }
+
         service.create(requestToProduct.apply(id, request));
     }
 

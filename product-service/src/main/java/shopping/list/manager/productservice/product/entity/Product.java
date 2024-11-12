@@ -3,8 +3,6 @@ package shopping.list.manager.productservice.product.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import shopping.list.manager.productservice.product.entity.enums.Category;
-import shopping.list.manager.productservice.shoppingList.entity.ShoppingList;
-import shopping.list.manager.productservice.user.entity.User;
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -40,11 +38,9 @@ public class Product implements Serializable {
     @Column(name = "is_bought")
     private boolean isBought;
 
-    @ManyToOne
-    @JoinColumn(name = "shopping_list")
-    private ShoppingList shoppingList;
+    @JoinColumn(name = "shopping_list_id")
+    private UUID shoppingList;
 
-    @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private UUID user;
 }
