@@ -39,8 +39,8 @@ public class Product implements Serializable {
     private boolean isBought;
 
     @JoinColumn(name = "shopping_list_id")
-    private UUID shoppingList;
+    private UUID shoppingListId;
 
     @JoinColumn(name = "user_id")
-    private UUID user;
+    private UUID userId;
 }

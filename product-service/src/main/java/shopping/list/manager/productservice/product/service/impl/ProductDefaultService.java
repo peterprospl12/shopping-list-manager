@@ -40,7 +40,7 @@ public class ProductDefaultService implements ProductService {
 
     @Override
     public Optional<List<Product>> findAllByShoppingList(UUID shoppingListId) {
-        return productRepository.findAllByShoppingList(shoppingListId);
+        return productRepository.findAllByShoppingListId(shoppingListId);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class ProductDefaultService implements ProductService {
 
     @Override
     public Optional<List<Product>> findAllByUser(UUID userId) {
-        return productRepository.findAllByUser(userId);
+        return productRepository.findAllByUserId(userId);
     }
 
     @Override

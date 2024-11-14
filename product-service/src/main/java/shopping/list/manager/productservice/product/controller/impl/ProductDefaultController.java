@@ -3,6 +3,9 @@ package shopping.list.manager.productservice.product.controller.impl;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import shopping.list.manager.productservice.product.controller.api.ProductController;
@@ -69,11 +72,13 @@ public class ProductDefaultController implements ProductController {
 
     @Override
     public void putProduct(UUID id, PutProductRequest request) {
-        if (!service.userExists(request.getUser())) {
+        // create log
+        log.info("Creating product with id: " + id);
+        if (!service.userExists(request.getUserId())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User does not exist");
         }
 
-        if (!service.shoppingListExists(request.getShoppingList())) {
+        if (!service.shoppingListExists(request.getShoppingListId())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Shopping list does not exist");
         }
 
@@ -86,6 +91,13 @@ public class ProductDefaultController implements ProductController {
             product -> service.delete(id),
             () -> { throw new ResponseStatusException(HttpStatus.NOT_FOUND); }
         );
+    }
+
+    @ExceptionHandler(ResponseStatusException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public String handleResponseStatusException(ResponseStatusException ex) {
+        return ex.getReason();
     }
 
 }

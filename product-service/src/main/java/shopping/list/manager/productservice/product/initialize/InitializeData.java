@@ -33,8 +33,8 @@ public class InitializeData implements InitializingBean {
                     .price(10)
                     .quantity(2)
                     .isBought(false)
-                    .shoppingList(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a9"))
-                    .user(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a6"))
+                    .shoppingListId(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a9"))
+                    .userId(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a6"))
                     .build();
 
             Product product2 = Product.builder()
@@ -44,8 +44,8 @@ public class InitializeData implements InitializingBean {
                     .price(20)
                     .quantity(3)
                     .isBought(true)
-                    .shoppingList(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a9"))
-                    .user(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a6"))
+                    .shoppingListId(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a9"))
+                    .userId(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a6"))
                     .build();
 
             Product product3 = Product.builder()
@@ -55,8 +55,8 @@ public class InitializeData implements InitializingBean {
                     .price(30)
                     .quantity(4)
                     .isBought(false)
-                    .shoppingList(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00b0"))
-                    .user(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a7"))
+                    .shoppingListId(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00b0"))
+                    .userId(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a7"))
                     .build();
 
             Product product4 = Product.builder()
@@ -66,8 +66,8 @@ public class InitializeData implements InitializingBean {
                     .price(40)
                     .quantity(5)
                     .isBought(true)
-                    .shoppingList(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00b0"))
-                    .user(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a7"))
+                    .shoppingListId(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00b0"))
+                    .userId(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a7"))
                     .build();
 
             Product product5 = Product.builder()
@@ -77,8 +77,8 @@ public class InitializeData implements InitializingBean {
                     .price(50)
                     .quantity(6)
                     .isBought(false)
-                    .shoppingList(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00b1"))
-                    .user(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a8"))
+                    .shoppingListId(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00b1"))
+                    .userId(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a8"))
                     .build();
 
             productService.create(product1);

@@ -18,8 +18,8 @@ public class ProductToResponseFunction implements Function<Product, GetProductRe
                 .quantity(entity.getQuantity())
                 .price(entity.getPrice())
                 .isBought(entity.isBought())
-                .shoppingList(entity.getShoppingList())
-                .user(entity.getUser())
+                .shoppingListId(entity.getShoppingListId())
+                .userId(entity.getUserId())
                 .build();
     }
 }

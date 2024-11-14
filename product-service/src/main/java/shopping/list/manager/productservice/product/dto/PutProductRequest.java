@@ -18,6 +18,6 @@ public class PutProductRequest {
     private double price;
     private int quantity;
     private boolean isBought;
-    private UUID shoppingList;
-    private UUID user;
+    private UUID shoppingListId;
+    private UUID userId;
 }

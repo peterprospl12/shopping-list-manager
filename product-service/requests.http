@@ -4,24 +4,62 @@ GET http://localhost:8081/api/products
 ### Get all products by name
 GET http://localhost:8081/api/products/name/Product5
 
+### Put product (User does not exist)
+PUT http://localhost:8081/api/products/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76
+Content-Type: application/json
+Authorization: Basic a2V2aW46dXNlcnVzZXI=
 
-###
-PUT http://localhost:8081/api/products/{{id}}
+{
+  "name": "Milk",
+  "category": "DRINKS",
+  "price": 1.5,
+  "quantity": 1,
+  "isBought": false,
+  "shoppingListId": "f5875513-bf7b-4ae1-b8a5-5b70a1b90e76",
+  "userId": "c4824e0f-769e-4ab9-9ebe-0578fb4f00a8"
+}
 
-###
-DELETE http://localhost:8081/api/products/{{id}}
+### Put product (Shopping list does not exist)
+PUT http://localhost:8081/api/products/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76
+Content-Type: application/json
+Authorization: Basic a2V2aW46dXNlcnVzZXI=
 
-###
-GET http://localhost:8081/api/products/{{productId}}
+{
+  "name": "Milk",
+  "category": "DRINKS",
+  "price": 1.5,
+  "quantity": 1,
+  "isBought": false,
+  "shoppingListId": "c4804e0f-769e-4ab9-9ebe-0578fb4f00a7",
+  "userId": "c4804e0f-769e-4ab9-9ebe-0578fb4f00a8"
+}
 
-###
-GET http://localhost:8081/api/shopping_lists/{{shoppingListId}}/products
+### Put product
+PUT http://localhost:8081/api/products/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76
+Content-Type: application/json
+Authorization: Basic a2V2aW46dXNlcnVzZXI=
 
-###
-GET http://localhost:8081/api/users/{{userId}}/products
+{
+  "name": "Milk",
+  "category": "DRINKS",
+  "price": 1.5,
+  "quantity": 1,
+  "isBought": false,
+  "shoppingListId": "c4804e0f-769e-4ab9-9ebe-0578fb4f00b1",
+  "userId": "c4804e0f-769e-4ab9-9ebe-0578fb4f00a8"
+}
 
-###
-DELETE http://localhost:8081/api/users/{{id}}
+### Get products by shopping list id
+GET http://localhost:8081/api/shopping_lists/c4804e0f-769e-4ab9-9ebe-0578fb4f00b1/products
 
-###
-DELETE http://localhost:8081/api/shopping-lists/{{id}}
+### Get product by id
+GET http://localhost:8081/api/products/c4804e0f-769e-4ab9-9ebe-0578fb4f00b6
+
+### Delete product
+DELETE http://localhost:8081/api/products/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76
+
+### Get products by shopping list id
+GET http://localhost:8081/api/shopping_lists/c4804e0f-769e-4ab9-9ebe-0578fb4f00b1/products
+
+### Get products by user id
+GET http://localhost:8081/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f00a6/products
