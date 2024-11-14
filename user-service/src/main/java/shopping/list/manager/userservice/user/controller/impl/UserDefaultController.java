@@ -51,6 +51,7 @@ public class UserDefaultController implements UserController {
 
     @Override
     public GetUserResponse getUser(UUID id) {
+        System.out.println("UserDefaultController.getUser");
         return service.find(id)
                 .map(userToResponse)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));

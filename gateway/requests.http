@@ -1,5 +1,6 @@
-### GET request to example server
-GET https://examples.http-client.intellij.net/get
-    ?generated-in=IntelliJ IDEA
+GET http://localhost:8084/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f00a8
+Content-Type: application/json
+Authorization: Basic a2V2aW46dXNlcnVzZXI=
 
 ###
+GET http://localhost:8083/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f00a8

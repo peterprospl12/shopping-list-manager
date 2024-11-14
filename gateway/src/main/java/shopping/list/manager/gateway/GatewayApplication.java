@@ -16,26 +16,27 @@ public class GatewayApplication {
 	@Bean
 	public RouteLocator routeLocator(
 			RouteLocatorBuilder builder,
-			@Value("http://localhost:8081") String productUrl,
-			@Value("http://localhost:8082") String shoppingListUrl,
-			@Value("http://localhost:8083") String userUrl
+			@Value("${product.service.url}") String productUrl,
+			@Value("${shoppingList.service.url}") String shoppingListUrl,
+			@Value("${user.service.url}") String userUrl,
+			@Value("${gateway.host}") String host
 	) {
 		return builder
 				.routes()
 				.route("products", route -> route
-						.host("host")
+						.host(host)
 						.and()
 						.path("/api/products/**")
 						.uri(productUrl)
 				)
 				.route("shoppingLists", route -> route
-						.host("host")
+						.host(host)
 						.and()
 						.path("/api/shopping-lists/**")
 						.uri(shoppingListUrl)
 				)
 				.route("users", route -> route
-						.host("host")
+						.host(host)
 						.and()
 						.path("/api/users/**")
 						.uri(userUrl)

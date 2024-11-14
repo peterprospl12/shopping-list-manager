@@ -65,7 +65,7 @@ Authorization: Basic a2V2aW46dXNlcnVzZXI=
 }
 
 ### Put a new product
-PUT http://localhost:8080/api/products/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76
+PUT http://localhost:808/api/products/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76
 Content-Type: application/json
 Authorization: Basic a2V2aW46dXNlcnVzZXI=
 
@@ -75,7 +75,8 @@ Authorization: Basic a2V2aW46dXNlcnVzZXI=
   "price": 1.5,
   "quantity": 1,
   "isBought": false,
-  "shoppingList": "f5875513-bf7b-4ae1-b8a5-5b70a1b90e76"
+  "shoppingListId": "f584175513-bf7b-4ae1-b8a5-5b70a1b90e76",
+  "userId": "c4804e0f-769e1414-4ab9-9ebe-0578fb4f00b5"
 }
 
 ### Delete a user
