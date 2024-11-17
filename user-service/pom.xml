@@ -70,8 +70,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
-
+        <dependency>
+            <groupId>shopping.list.manager</groupId>
+            <artifactId>common-library</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
     <build>

@@ -1,4 +1,4 @@
-package shopping.list.manager.productservice.clients.api;
+package shopping.list.manager.productservice.listeners.api;
 
 import java.util.UUID;
 

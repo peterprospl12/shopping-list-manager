@@ -1,15 +1,15 @@
-package shopping.list.manager.productservice.clients.impl;
+package shopping.list.manager.productservice.listeners.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import shopping.list.manager.productservice.clients.api.UserServiceClient;
+import shopping.list.manager.productservice.listeners.api.ShoppingListServiceClient;
 
 import java.util.UUID;
 
 @Service
-public class UserServiceClientDefault implements UserServiceClient {
+public class ShoppingListClientDefault implements ShoppingListServiceClient {
 
     private final RestTemplate restTemplate;
 
@@ -17,14 +17,14 @@ public class UserServiceClientDefault implements UserServiceClient {
     private String gatewayUrl;
 
     @Autowired
-    public UserServiceClientDefault(RestTemplate restTemplate) {
+    public ShoppingListClientDefault(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
     @Override
-    public boolean userExists(UUID userId) {
+    public boolean shoppingListExists(UUID shoppingListId) {
         try {
-            restTemplate.getForObject(gatewayUrl + "api/users/" + userId, Void.class);
+            restTemplate.getForObject(gatewayUrl + "api/shopping-lists/" + shoppingListId, Void.class);
             return true;
         } catch (Exception e) {
             return false;
