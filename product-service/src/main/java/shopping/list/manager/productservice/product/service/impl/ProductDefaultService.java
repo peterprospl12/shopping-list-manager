@@ -1,10 +1,9 @@
 package shopping.list.manager.productservice.product.service.impl;
 
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
-import shopping.list.manager.productservice.listeners.api.ShoppingListServiceClient;
+import shopping.list.manager.productservice.clients.api.ShoppingListServiceClient;
+import shopping.list.manager.productservice.clients.api.UserServiceClient;
 import shopping.list.manager.productservice.product.entity.Product;
 import shopping.list.manager.productservice.product.repository.api.ProductRepository;
 import shopping.list.manager.productservice.product.service.api.ProductService;
@@ -18,15 +17,15 @@ public class ProductDefaultService implements ProductService {
 
     private final ProductRepository productRepository;
     private final ShoppingListServiceClient shoppingListService;
-    private final RabbitTemplate rabbitTemplate;
+    private final UserServiceClient userService;
 
     @Autowired
     public ProductDefaultService(ProductRepository productRepository,
                                  ShoppingListServiceClient shoppingListService,
-                                 RabbitTemplate rabbitTemplate) {
+                                 UserServiceClient userService) {
         this.productRepository = productRepository;
         this.shoppingListService = shoppingListService;
-        this.rabbitTemplate = rabbitTemplate;
+        this.userService = userService;
     }
 
     @Override
@@ -55,13 +54,13 @@ public class ProductDefaultService implements ProductService {
     }
 
     @Override
-    public boolean shoppingListExists(UUID shoppingListId) {
-        return shoppingListService.shoppingListExists(shoppingListId);
+    public boolean userExists(UUID userId) {
+        return userService.userExists(userId);
     }
 
     @Override
-    public void deleteProductsByUser(UUID userId) {
-        productRepository.deleteAllByUserId(userId);
+    public boolean shoppingListExists(UUID shoppingListId) {
+        return shoppingListService.shoppingListExists(shoppingListId);
     }
 
     @Override
@@ -77,15 +76,5 @@ public class ProductDefaultService implements ProductService {
     @Override
     public void delete(UUID id) {
         productRepository.findById(id).ifPresent(productRepository::delete);
-    }
-
-
-    private boolean UserExists(UUID userId) {
-        Boolean exists = rabbitTemplate.convertSendAndReceiveAsType(
-                "user-exists.request.queue",
-                userId,
-                new ParameterizedTypeReference<>() {
-                });
-        return exists != null && exists;
     }
 }

@@ -16,10 +16,10 @@ public interface ProductService {
     Optional<List<Product>> findAllByUser(UUID userId);
     Optional<List<Product>> findAllByName(String name);
 
+    boolean userExists(UUID userId);
     boolean shoppingListExists(UUID shoppingListId);
 
     void create(Product product);
     void update(Product product);
     void delete(UUID id);
-    void deleteProductsByUser(UUID userId);
 }
