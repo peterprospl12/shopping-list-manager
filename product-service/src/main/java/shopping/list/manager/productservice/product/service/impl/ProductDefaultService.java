@@ -2,6 +2,7 @@ package shopping.list.manager.productservice.product.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import shopping.list.manager.productservice.clients.api.ShoppingListServiceClient;
 import shopping.list.manager.productservice.clients.api.UserServiceClient;
 import shopping.list.manager.productservice.product.entity.Product;
@@ -76,5 +77,17 @@ public class ProductDefaultService implements ProductService {
     @Override
     public void delete(UUID id) {
         productRepository.findById(id).ifPresent(productRepository::delete);
+    }
+
+    @Override
+    @Transactional
+    public void deleteAllByUserId(UUID userId) {
+        productRepository.deleteAllByUserId(userId);
+    }
+
+    @Override
+    @Transactional
+    public void deleteAllByShoppingListId(UUID shoppingListId) {
+        productRepository.deleteAllByShoppingListId(shoppingListId);
     }
 }

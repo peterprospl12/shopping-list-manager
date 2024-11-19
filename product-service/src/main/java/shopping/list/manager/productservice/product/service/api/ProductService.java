@@ -22,4 +22,6 @@ public interface ProductService {
     void create(Product product);
     void update(Product product);
     void delete(UUID id);
+    void deleteAllByUserId(UUID userId);
+    void deleteAllByShoppingListId(UUID shoppingListId);
 }

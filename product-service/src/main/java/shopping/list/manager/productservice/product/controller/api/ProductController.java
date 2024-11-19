@@ -1,6 +1,7 @@
 package shopping.list.manager.productservice.product.controller.api;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import shopping.list.manager.productservice.product.dto.GetProductResponse;
 import shopping.list.manager.productservice.product.dto.GetProductsResponse;
@@ -43,5 +44,11 @@ public interface ProductController {
     @DeleteMapping("api/products/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void deleteProduct(@PathVariable("id") UUID id);
+
+    @PostMapping("api/products/user-deleted")
+    ResponseEntity<Void> handleUserDeleted(@RequestBody UUID userId);
+
+    @PostMapping("api/products/shopping-list-deleted")
+    ResponseEntity<Void> handleShoppingListDeleted(@RequestBody UUID shoppingListId);
 
 }

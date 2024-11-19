@@ -14,4 +14,8 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
     Optional<List<Product>> findAllByShoppingListId(UUID shoppingListId);
 
     Optional<List<Product>> findAllByUserId(UUID userId);
+
+    void deleteAllByUserId(UUID userId);
+
+    void deleteAllByShoppingListId(UUID shoppingListId);
 }

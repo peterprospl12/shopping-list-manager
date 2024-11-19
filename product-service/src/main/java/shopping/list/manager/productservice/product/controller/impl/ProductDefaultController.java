@@ -3,6 +3,7 @@ package shopping.list.manager.productservice.product.controller.impl;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -93,11 +94,22 @@ public class ProductDefaultController implements ProductController {
         );
     }
 
+    @Override
+    public ResponseEntity<Void> handleUserDeleted(UUID userId) {
+        service.deleteAllByUserId(userId);
+        return ResponseEntity.ok().build();
+    }
+
+    @Override
+    public ResponseEntity<Void> handleShoppingListDeleted(UUID shoppingListId) {
+        service.deleteAllByShoppingListId(shoppingListId);
+        return ResponseEntity.ok().build();
+    }
+
     @ExceptionHandler(ResponseStatusException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
     public String handleResponseStatusException(ResponseStatusException ex) {
         return ex.getReason();
     }
-
 }
