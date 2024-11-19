@@ -20,8 +20,39 @@ Authorization: Basic a2V2aW46dXNlcnVzZXI=
 ### Get user by id
 GET http://localhost:8083/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f0015
 
-### Update user
-PATCH http://localhost:8083/api/users/{{id}}
-
 ### Delete user
-DELETE http://localhost:8083/api/users/{{id}}
+DELETE http://localhost:8083/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f0015
+
+### Get user by id
+GET http://localhost:8083/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f0015
+
+### Put user
+PUT http://localhost:8083/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f0015
+Content-Type: application/json
+Authorization: Basic a2V2aW46dXNlcnVzZXI=
+
+{
+  "name": "Mariusz",
+  "surname": "Walczak",
+  "email": "walczak@o2.pl",
+  "password": "hahahahaha",
+  "birthDate": "1990-01-01"
+}
+
+### Get user by id
+GET http://localhost:8083/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f0015
+
+### Patch user
+PATCH http://localhost:8083/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f0015
+Content-Type: application/json
+Authorization: Basic a2V2aW46dXNlcnVzZXI=
+
+{
+  "name": "Mariusz1",
+  "surname": "Walczak",
+  "email": "walczak@o2.pl",
+  "birthDate": "1990-01-01"
+}
+
+### Get user by id
+GET http://localhost:8083/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f0015
