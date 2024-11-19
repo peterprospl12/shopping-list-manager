@@ -14,9 +14,4 @@ public class ShoppingListServiceApplication {
         SpringApplication.run(ShoppingListServiceApplication.class, args);
     }
 
-    @Bean
-    public RestTemplate restTemplate(@Value("${product.service.url}") String baseUrl) {
-        return new RestTemplateBuilder().rootUri(baseUrl).build();
-    }
-
 }

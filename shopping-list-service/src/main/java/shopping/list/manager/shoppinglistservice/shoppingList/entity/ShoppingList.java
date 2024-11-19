@@ -31,4 +31,7 @@ public class ShoppingList implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private Status status;
+
+    @Column(name = "user_id")
+    private UUID userId;
 }

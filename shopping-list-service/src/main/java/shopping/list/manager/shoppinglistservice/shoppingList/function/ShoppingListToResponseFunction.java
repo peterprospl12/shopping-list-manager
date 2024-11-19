@@ -16,6 +16,7 @@ public class ShoppingListToResponseFunction implements Function<ShoppingList, Ge
                 .name(entity.getName())
                 .status(entity.getStatus())
                 .date(entity.getDate())
+                .userId(entity.getUserId())
                 .build();
     }
 }

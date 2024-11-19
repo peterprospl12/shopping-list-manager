@@ -27,6 +27,10 @@ public class GatewayApplication {
 						.host(host)
 						.and()
 						.path("/api/products/**")
+						.or()
+						.path("/api/users/*/products")
+						.or()
+						.path("/api/shopping-lists/*/products")
 						.uri(productUrl)
 				)
 				.route("shoppingLists", route -> route

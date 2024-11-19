@@ -19,4 +19,5 @@ public class GetShoppingListResponse {
     private String name;
     private LocalDate date;
     private Status status;
+    private UUID userId;
 }

@@ -17,6 +17,7 @@ public class RequestToShoppingListFunction implements BiFunction<UUID, PutShoppi
                 .name(request.getName())
                 .status(request.getStatus())
                 .date(request.getDate())
+                .userId(request.getUserId())
                 .build();
     }
 }

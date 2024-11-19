@@ -14,8 +14,4 @@ public class UserServiceApplication {
 		SpringApplication.run(UserServiceApplication.class, args);
 	}
 
-	@Bean
-	public RestTemplate restTemplate(@Value("${product.service.url}") String baseUrl) {
-		return new RestTemplateBuilder().rootUri(baseUrl).build();
-	}
 }

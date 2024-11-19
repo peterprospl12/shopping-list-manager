@@ -30,6 +30,7 @@ public class InitializeData implements InitializingBean {
                 .name("List1224")
                 .date(LocalDate.ofYearDay(2024, 13))
                 .status(Status.ACTIVE)
+                .userId(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a6"))
                 .build();
 
         ShoppingList shoppingList2 = ShoppingList.builder()
@@ -37,6 +38,7 @@ public class InitializeData implements InitializingBean {
                 .name("List255")
                 .date(LocalDate.ofYearDay(1995,15))
                 .status(Status.ACTIVE)
+                .userId(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a7"))
                 .build();
 
         ShoppingList shoppingList3 = ShoppingList.builder()
@@ -44,6 +46,7 @@ public class InitializeData implements InitializingBean {
                 .name("List311")
                 .date(LocalDate.ofYearDay(2000, 25))
                 .status(Status.ARCHIVED)
+                .userId(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a8"))
                 .build();
 
         shoppingListService.create(shoppingList1);

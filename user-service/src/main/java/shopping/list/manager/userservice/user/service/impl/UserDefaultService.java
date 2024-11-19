@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import shopping.list.manager.userservice.user.entity.User;
 import shopping.list.manager.userservice.user.repository.api.UserRepository;
+import shopping.list.manager.userservice.user.service.api.UserEventPublisher;
 import shopping.list.manager.userservice.user.service.api.UserService;
 
 import java.util.List;
@@ -17,11 +18,13 @@ import java.util.UUID;
 public class UserDefaultService implements UserService {
 
     private final UserRepository userRepository;
+    private final UserEventPublisher userEventPublisher;
     private static final Logger logger = LoggerFactory.getLogger(UserDefaultService.class);
 
     @Autowired
-    public UserDefaultService(UserRepository userRepository) {
+    public UserDefaultService(UserRepository userRepository, UserEventPublisher userEventPublisher) {
         this.userRepository = userRepository;
+        this.userEventPublisher = userEventPublisher;
     }
 
     @Override
@@ -42,7 +45,6 @@ public class UserDefaultService implements UserService {
     @Override
     public void create(User user) {
         userRepository.save(user);
-        logger.info("User with email: {} has been created.", user.getEmail());
     }
 
     @Override
@@ -52,7 +54,12 @@ public class UserDefaultService implements UserService {
 
     @Override
     public void delete(UUID id) {
+        if (!userRepository.existsById(id)) {
+            logger.warn("User with id {} does not exist", id);
+            return;
+        }
         userRepository.deleteById(id);
+        userEventPublisher.notifyUserDeleted(id);
     }
 
 }

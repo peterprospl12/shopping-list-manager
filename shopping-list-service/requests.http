@@ -9,8 +9,12 @@ Authorization: Basic a2V2aW46dXNlcnVzZXI=
 {
   "name": "New list",
   "date": "2024-10-27T22:46:43.404Z",
-  "status": "ACTIVE"
+  "status": "ACTIVE",
+  "userId": "c4804e0f-769e-4ab9-9ebe-0578fb4f00a8"
 }
+
+### Get shopping lists by UserID
+GET http://localhost:8082/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f00a8/shopping-lists
 
 ### Get shopping list by id
 GET http://localhost:8082/api/shopping-lists/c4804e0f-769e-4ab9-9ebe-0578fb4f0011

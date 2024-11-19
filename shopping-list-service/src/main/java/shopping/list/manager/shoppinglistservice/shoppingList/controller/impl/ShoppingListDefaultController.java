@@ -1,5 +1,6 @@
 package shopping.list.manager.shoppinglistservice.shoppingList.controller.impl;
 
+import org.springframework.http.ResponseEntity;
 import shopping.list.manager.shoppinglistservice.shoppingList.controller.api.ShoppingListController;
 import shopping.list.manager.shoppinglistservice.shoppingList.dto.GetShoppingListResponse;
 import shopping.list.manager.shoppinglistservice.shoppingList.dto.GetShoppingListsResponse;
@@ -40,6 +41,13 @@ public class ShoppingListDefaultController implements ShoppingListController {
         return shoppingListsToResponse.apply(service.findAll());
     }
 
+    @Override
+    public GetShoppingListsResponse getUserShoppingLists(UUID userId) {
+        return service.findAllByUserId(userId)
+                .map(shoppingListsToResponse)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
     @Transactional
     @Override
     public GetShoppingListResponse  getShoppingList(UUID shoppingListId) {
@@ -61,5 +69,11 @@ public class ShoppingListDefaultController implements ShoppingListController {
                     throw new ResponseStatusException(HttpStatus.NOT_FOUND);
                 }
         );
+    }
+
+    @Override
+    public ResponseEntity<Void> handleUserDeleted(UUID userId) {
+        service.deleteAllByUserId(userId);
+        return ResponseEntity.ok().build();
     }
 }

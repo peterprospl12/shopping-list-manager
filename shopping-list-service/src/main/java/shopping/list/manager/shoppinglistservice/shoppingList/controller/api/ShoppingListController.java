@@ -1,5 +1,6 @@
 package shopping.list.manager.shoppinglistservice.shoppingList.controller.api;
 
+import org.springframework.http.ResponseEntity;
 import shopping.list.manager.shoppinglistservice.shoppingList.dto.GetShoppingListResponse;
 import shopping.list.manager.shoppinglistservice.shoppingList.dto.GetShoppingListsResponse;
 import shopping.list.manager.shoppinglistservice.shoppingList.dto.PutShoppingListRequest;
@@ -15,6 +16,11 @@ public interface ShoppingListController {
     @ResponseBody
     GetShoppingListsResponse getShoppingLists();
 
+    @GetMapping("api/users/{userId}/shopping-lists")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    GetShoppingListsResponse getUserShoppingLists(@PathVariable("userId") UUID userId);
+
     @GetMapping("api/shopping-lists/{shoppingListId}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
@@ -27,4 +33,7 @@ public interface ShoppingListController {
     @DeleteMapping("api/shopping-lists/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void deleteShoppingList(@PathVariable("id") UUID id);
+
+    @PostMapping("api/shopping-lists/user-deleted")
+    ResponseEntity<Void> handleUserDeleted(@RequestBody UUID userId);
 }
