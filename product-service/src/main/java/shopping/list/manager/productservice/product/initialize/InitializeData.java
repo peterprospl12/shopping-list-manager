@@ -34,7 +34,6 @@ public class InitializeData implements InitializingBean {
                     .quantity(2)
                     .isBought(false)
                     .shoppingListId(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a9"))
-                    .userId(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a6"))
                     .build();
 
             Product product2 = Product.builder()
@@ -45,7 +44,6 @@ public class InitializeData implements InitializingBean {
                     .quantity(3)
                     .isBought(true)
                     .shoppingListId(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a9"))
-                    .userId(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a6"))
                     .build();
 
             Product product3 = Product.builder()
@@ -56,7 +54,6 @@ public class InitializeData implements InitializingBean {
                     .quantity(4)
                     .isBought(false)
                     .shoppingListId(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00b0"))
-                    .userId(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a7"))
                     .build();
 
             Product product4 = Product.builder()
@@ -67,7 +64,6 @@ public class InitializeData implements InitializingBean {
                     .quantity(5)
                     .isBought(true)
                     .shoppingListId(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00b0"))
-                    .userId(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a7"))
                     .build();
 
             Product product5 = Product.builder()
@@ -78,7 +74,6 @@ public class InitializeData implements InitializingBean {
                     .quantity(6)
                     .isBought(false)
                     .shoppingListId(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00b1"))
-                    .userId(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a8"))
                     .build();
 
             productService.create(product1);

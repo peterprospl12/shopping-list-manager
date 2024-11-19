@@ -1,10 +1,11 @@
-package shopping.list.manager.productservice.clients.impl;
+package shopping.list.manager.shoppinglistservice.clients.impl;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import shopping.list.manager.productservice.clients.api.UserServiceClient;
+import shopping.list.manager.shoppinglistservice.clients.api.UserServiceClient;
 
 import java.util.UUID;
 

@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import shopping.list.manager.userservice.user.entity.User;
 import shopping.list.manager.userservice.user.repository.api.UserRepository;
 import shopping.list.manager.userservice.user.service.api.UserEventPublisher;
@@ -53,6 +54,7 @@ public class UserDefaultService implements UserService {
     }
 
     @Override
+    @Transactional
     public void delete(UUID id) {
         if (!userRepository.existsById(id)) {
             logger.warn("User with id {} does not exist", id);

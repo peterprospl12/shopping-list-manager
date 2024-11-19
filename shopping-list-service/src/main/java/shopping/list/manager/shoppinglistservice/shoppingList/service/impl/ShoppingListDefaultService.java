@@ -2,6 +2,7 @@ package shopping.list.manager.shoppinglistservice.shoppingList.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import shopping.list.manager.shoppinglistservice.clients.api.UserServiceClient;
 import shopping.list.manager.shoppinglistservice.shoppingList.entity.ShoppingList;
 import shopping.list.manager.shoppinglistservice.shoppingList.repository.api.ShoppingListRepository;
 import shopping.list.manager.shoppinglistservice.shoppingList.service.api.ShoppingListEventPublisher;
@@ -18,14 +19,17 @@ public class ShoppingListDefaultService implements ShoppingListService {
 
     private final ShoppingListRepository shoppingListRepository;
     private final ShoppingListEventPublisher shoppingListEventPublisher;
+    private final UserServiceClient userServiceClient;
     private static final Logger logger = LoggerFactory.getLogger(ShoppingListDefaultService.class);
 
 
     @Autowired
     public ShoppingListDefaultService(ShoppingListRepository shoppingListRepository,
-                                      ShoppingListEventPublisher shoppingListEventPublisher) {
+                                      ShoppingListEventPublisher shoppingListEventPublisher,
+                                      UserServiceClient userServiceClient) {
         this.shoppingListRepository = shoppingListRepository;
         this.shoppingListEventPublisher = shoppingListEventPublisher;
+        this.userServiceClient = userServiceClient;
     }
 
     @Override
@@ -45,6 +49,10 @@ public class ShoppingListDefaultService implements ShoppingListService {
 
     @Override
     public void create(ShoppingList shoppingList){
+        if(!userServiceClient.userExists(shoppingList.getUserId())){
+            logger.warn("User with id {} does not exist", shoppingList.getUserId());
+            return;
+        }
         shoppingListRepository.save(shoppingList);
     }
 
@@ -65,6 +73,7 @@ public class ShoppingListDefaultService implements ShoppingListService {
 
     @Override
     public void deleteAllByUserId(UUID userId){
+        shoppingListRepository.findAllByUserId(userId).forEach(shoppingList -> shoppingListEventPublisher.notifyShoppingListDeleted(shoppingList.getId()));
         shoppingListRepository.deleteAllByUserId(userId);
     }
 

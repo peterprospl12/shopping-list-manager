@@ -22,11 +22,9 @@ public class UserEventPublisherDefault implements UserEventPublisher {
 
     @Override
     public void notifyUserDeleted(UUID userId) {
-        String productUrl = gatewayUrl + "/api/products/user-deleted";
         String shoppingListUrl = gatewayUrl + "/api/shopping-lists/user-deleted";
 
         try {
-            restTemplate.postForEntity(productUrl, userId, Void.class);
             restTemplate.postForEntity(shoppingListUrl, userId, Void.class);
         } catch (Exception e) {
             System.err.println("Error while notifying about user deletion: " + e.getMessage());

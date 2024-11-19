@@ -1,6 +1,8 @@
 package shopping.list.manager.productservice.product.controller.impl;
 
 import lombok.extern.java.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,13 +54,6 @@ public class ProductDefaultController implements ProductController {
     }
 
     @Override
-    public GetProductsResponse getUserProducts(UUID userId) {
-        return productsToResponse.apply(
-            service.findAllByUser(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND))
-        );
-    }
-
-    @Override
     public GetProductsResponse getProductsByName(String name) {
         return productsToResponse.apply(service.findAllByName(name).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
     }
@@ -73,16 +68,6 @@ public class ProductDefaultController implements ProductController {
 
     @Override
     public void putProduct(UUID id, PutProductRequest request) {
-        // create log
-        log.info("Creating product with id: " + id);
-        if (!service.userExists(request.getUserId())) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User does not exist");
-        }
-
-        if (!service.shoppingListExists(request.getShoppingListId())) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Shopping list does not exist");
-        }
-
         service.create(requestToProduct.apply(id, request));
     }
 
@@ -92,12 +77,6 @@ public class ProductDefaultController implements ProductController {
             product -> service.delete(id),
             () -> { throw new ResponseStatusException(HttpStatus.NOT_FOUND); }
         );
-    }
-
-    @Override
-    public ResponseEntity<Void> handleUserDeleted(UUID userId) {
-        service.deleteAllByUserId(userId);
-        return ResponseEntity.ok().build();
     }
 
     @Override

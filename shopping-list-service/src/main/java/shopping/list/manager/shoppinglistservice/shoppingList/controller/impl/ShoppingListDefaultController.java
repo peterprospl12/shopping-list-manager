@@ -72,6 +72,7 @@ public class ShoppingListDefaultController implements ShoppingListController {
     }
 
     @Override
+    @Transactional
     public ResponseEntity<Void> handleUserDeleted(UUID userId) {
         service.deleteAllByUserId(userId);
         return ResponseEntity.ok().build();

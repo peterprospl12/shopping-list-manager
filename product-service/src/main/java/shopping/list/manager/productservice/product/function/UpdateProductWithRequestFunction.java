@@ -19,7 +19,6 @@ public class UpdateProductWithRequestFunction implements BiFunction<Product, Pat
                 .price(request.getPrice())
                 .isBought(request.isBought())
                 .shoppingListId(entity.getShoppingListId())
-                .userId(entity.getUserId())
                 .build();
     }
 }

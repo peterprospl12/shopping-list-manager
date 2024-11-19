@@ -20,7 +20,6 @@ public class RequestToProductFunction implements BiFunction<UUID, PutProductRequ
                 .price(request.getPrice())
                 .isBought(request.isBought())
                 .shoppingListId(request.getShoppingListId())
-                .userId(request.getUserId())
                 .build();
     }
 }

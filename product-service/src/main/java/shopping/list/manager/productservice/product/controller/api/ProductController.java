@@ -16,15 +16,10 @@ public interface ProductController {
     @ResponseBody
     GetProductsResponse getProducts();
 
-    @GetMapping("api/shopping_lists/{shoppingListId}/products")
+    @GetMapping("api/shopping-lists/{shoppingListId}/products")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     GetProductsResponse getShoppingListProducts(@PathVariable("shoppingListId") UUID shoppingListId);
-
-    @GetMapping("api/users/{userId}/products")
-    @ResponseStatus(HttpStatus.OK)
-    @ResponseBody
-    GetProductsResponse getUserProducts(@PathVariable("userId") UUID userId);
 
     @GetMapping("api/products/name/{name}")
     @ResponseStatus(HttpStatus.OK)
@@ -44,9 +39,6 @@ public interface ProductController {
     @DeleteMapping("api/products/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void deleteProduct(@PathVariable("id") UUID id);
-
-    @PostMapping("api/products/user-deleted")
-    ResponseEntity<Void> handleUserDeleted(@RequestBody UUID userId);
 
     @PostMapping("api/products/shopping-list-deleted")
     ResponseEntity<Void> handleShoppingListDeleted(@RequestBody UUID shoppingListId);

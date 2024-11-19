@@ -1,23 +1,10 @@
+### SERVICES HAVE TO STARTED IN CORRECT ORDER
+
 ### Get all products
 GET http://localhost:8084/api/products
 
 ### Get all products by name
 GET http://localhost:8084/api/products/name/Product5
-
-### Put product (User does not exist)
-PUT http://localhost:8084/api/products/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76
-Content-Type: application/json
-Authorization: Basic a2V2aW46dXNlcnVzZXI=
-
-{
-  "name": "Milk",
-  "category": "DRINKS",
-  "price": 1.5,
-  "quantity": 1,
-  "isBought": false,
-  "shoppingListId": "f5875513-bf7b-4ae1-b8a5-5b70a1b90e76",
-  "userId": "c4824e0f-769e-4ab9-9ebe-0578fb4f00a8"
-}
 
 ### Put product (Shopping list does not exist)
 PUT http://localhost:8084/api/products/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76
@@ -30,21 +17,14 @@ Authorization: Basic a2V2aW46dXNlcnVzZXI=
   "price": 1.5,
   "quantity": 1,
   "isBought": false,
-  "shoppingListId": "c4804e0f-769e-4ab9-9ebe-0578fb4f00a7",
-  "userId": "c4804e0f-769e-4ab9-9ebe-0578fb4f00a8"
+  "shoppingListId": "c4804e0f-769e-4ab9-9ebe-0578fb4f00a7"
 }
 
 ### Get products by shopping list id
-GET http://localhost:8084/api/shopping_lists/c4804e0f-769e-4ab9-9ebe-0578fb4f00b1/products
+GET http://localhost:8084/api/shopping-lists/c4804e0f-769e-4ab9-9ebe-0578fb4f00b1/products
 
 ### Get product by id
 GET http://localhost:8084/api/products/c4804e0f-769e-4ab9-9ebe-0578fb4f00b6
-
-### Get products by shopping list id
-GET http://localhost:8084/api/shopping_lists/c4804e0f-769e-4ab9-9ebe-0578fb4f00b1/products
-
-### Get products by user id
-GET http://localhost:8084/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f00a8/products
 
 ### Get all shopping lists
 GET http://localhost:8084/api/shopping-lists
@@ -69,7 +49,7 @@ Authorization: Basic a2V2aW46dXNlcnVzZXI=
   "surname": "Walczak",
   "email": "walczak@o2.pl",
   "password": "hahahahaha",
-  "birthday": "1990-10-27"
+  "birthDate": "1990-01-01"
 }
 
 ### Get user by id
@@ -83,7 +63,8 @@ Authorization: Basic a2V2aW46dXNlcnVzZXI=
 {
   "name": "New list",
   "date": "2024-10-27T22:46:43.404Z",
-  "status": "ACTIVE"
+  "status": "ACTIVE",
+  "userId": "c4804e0f-769e-4ab9-9ebe-0578fb4f0015"
 }
 
 ### Get shopping list by id
@@ -100,8 +81,7 @@ Authorization: Basic a2V2aW46dXNlcnVzZXI=
   "price": 1.5,
   "quantity": 1,
   "isBought": false,
-  "shoppingListId": "c4804e0f-769e-4ab9-9ebe-0578fb4f0011",
-  "userId": "c4804e0f-769e-4ab9-9ebe-0578fb4f0015"
+  "shoppingListId": "c4804e0f-769e-4ab9-9ebe-0578fb4f0011"
 }
 
 ### Get product by id
@@ -148,7 +128,8 @@ Authorization: Basic a2V2aW46dXNlcnVzZXI=
 {
   "name": "New list",
   "date": "2024-10-27T22:46:43.404Z",
-  "status": "ACTIVE"
+  "status": "ACTIVE",
+  "userId": "c4804e0f-769e-4ab9-9ebe-0578fb4f0015"
 }
 
 ### Put product
@@ -162,14 +143,15 @@ Authorization: Basic a2V2aW46dXNlcnVzZXI=
   "price": 1.5,
   "quantity": 1,
   "isBought": false,
-  "shoppingListId": "c4804e0f-769e-4ab9-9ebe-0578fb4f0011",
-  "userId": "c4804e0f-769e-4ab9-9ebe-0578fb4f0015"
+  "shoppingListId": "c4804e0f-769e-4ab9-9ebe-0578fb4f0011"
 }
 
 ### Delete user
-DELETE http://localhost:8083/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f0015
+DELETE http://localhost:8084/api/users/c4804e0f-769e-4ab9-9ebe-0578fb4f0015
 
 ### Get product by id
 GET http://localhost:8084/api/products/f5875513-bf7b-4ae1-b8a5-5b70a1b90e76
 
+### Get shopping list by id
+GET http://localhost:8084/api/shopping-lists/c4804e0f-769e-4ab9-9ebe-0578fb4f0011
 

@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import shopping.list.manager.productservice.clients.api.ShoppingListServiceClient;
-import shopping.list.manager.productservice.clients.api.UserServiceClient;
 import shopping.list.manager.productservice.product.entity.Product;
 import shopping.list.manager.productservice.product.repository.api.ProductRepository;
 import shopping.list.manager.productservice.product.service.api.ProductService;
@@ -12,21 +11,20 @@ import shopping.list.manager.productservice.product.service.api.ProductService;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 @Service
 public class ProductDefaultService implements ProductService {
 
     private final ProductRepository productRepository;
     private final ShoppingListServiceClient shoppingListService;
-    private final UserServiceClient userService;
+    private final Logger logger = Logger.getLogger(ProductDefaultService.class.getName());
 
     @Autowired
     public ProductDefaultService(ProductRepository productRepository,
-                                 ShoppingListServiceClient shoppingListService,
-                                 UserServiceClient userService) {
+                                 ShoppingListServiceClient shoppingListService) {
         this.productRepository = productRepository;
         this.shoppingListService = shoppingListService;
-        this.userService = userService;
     }
 
     @Override
@@ -50,22 +48,11 @@ public class ProductDefaultService implements ProductService {
     }
 
     @Override
-    public Optional<List<Product>> findAllByUser(UUID userId) {
-        return productRepository.findAllByUserId(userId);
-    }
-
-    @Override
-    public boolean userExists(UUID userId) {
-        return userService.userExists(userId);
-    }
-
-    @Override
-    public boolean shoppingListExists(UUID shoppingListId) {
-        return shoppingListService.shoppingListExists(shoppingListId);
-    }
-
-    @Override
     public void create(Product product) {
+        if (!shoppingListService.shoppingListExists(product.getShoppingListId())) {
+            logger.warning("Shopping list with id " + product.getShoppingListId() + " does not exist");
+            return;
+        }
         productRepository.save(product);
     }
 
@@ -77,12 +64,6 @@ public class ProductDefaultService implements ProductService {
     @Override
     public void delete(UUID id) {
         productRepository.findById(id).ifPresent(productRepository::delete);
-    }
-
-    @Override
-    @Transactional
-    public void deleteAllByUserId(UUID userId) {
-        productRepository.deleteAllByUserId(userId);
     }
 
     @Override

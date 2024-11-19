@@ -40,7 +40,4 @@ public class Product implements Serializable {
 
     @JoinColumn(name = "shopping_list_id")
     private UUID shoppingListId;
-
-    @JoinColumn(name = "user_id")
-    private UUID userId;
 }

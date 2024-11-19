@@ -14,7 +14,7 @@ Authorization: Basic a2V2aW46dXNlcnVzZXI=
   "surname": "Walczak",
   "email": "walczak@o2.pl",
   "password": "hahahahaha",
-  "birthday": "1990-10-27"
+  "birthDate": "1990-01-01"
 }
 
 ### Get user by id
