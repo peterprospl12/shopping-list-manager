@@ -1,0 +1,9 @@
+<ng-container *ngIf="product">
+    <article>
+        <h2>{{product.name}}</h2>
+        <p>Category: {{product.category}}</p>
+        <p>Price: {{product.price}}</p>
+        <p>Quantity: {{product.quantity}}</p>
+        <p>Status: {{product.isBought ? 'Bought' : 'Not bought'}}</p>
+    </article>
+</ng-container>

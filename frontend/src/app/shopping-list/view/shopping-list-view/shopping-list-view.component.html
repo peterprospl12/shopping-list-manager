@@ -1,0 +1,19 @@
+<article>
+    <h2>Products in Shopping List</h2>
+    <table *ngIf="products.length > 0">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products">
+                <td>{{product.name}}</td>
+                <td>
+                    <a [routerLink]="['/products', product.id]">Show details</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</article>
