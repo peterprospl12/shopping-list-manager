@@ -5,6 +5,9 @@ import { ShoppingListListComponent } from './shopping-list/view/shopping-list-li
 import { ShoppingListDetailsViewComponent } from './shopping-list/view/shopping-list-details-view/shopping-list-details-view.component';
 import { ShoppingListViewComponent } from './shopping-list/view/shopping-list-view/shopping-list-view.component';
 import { ProductViewComponent } from './product/view/product-view/product-view.component';
+import { ShoppingListCreateComponent } from './shopping-list/view/shopping-list-create/shopping-list-create.component';
+import { ShoppingListEditComponent } from './shopping-list/view/shopping-list-edit/shopping-list-edit.component';
+import { ProductCreateComponent } from './product/view/product-create/product-create.component';
 
 const routes: Routes = [
   {
@@ -25,8 +28,20 @@ const routes: Routes = [
     component: ShoppingListViewComponent
   },
   {
+    path: 'shopping-lists/create',
+    component: ShoppingListCreateComponent
+  },
+  {
+    path: 'shopping-lists/:id/edit',
+    component: ShoppingListEditComponent
+  },
+  {
     path: 'products',
     component: ProductListComponent
+  },
+  {
+    path: 'products/create/:shoppingListId',
+    component: ProductCreateComponent
   },
   {
     path: 'products/:id',

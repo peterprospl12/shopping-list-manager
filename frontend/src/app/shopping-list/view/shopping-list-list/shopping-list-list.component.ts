@@ -14,8 +14,26 @@ export class ShoppingListListComponent implements OnInit {
   constructor(private service: ShoppingListService) { }
 
   ngOnInit(): void {
+    this.loadShoppingLists();
+  }
+
+  loadShoppingLists(): void {
     this.service.getShoppingLists().subscribe(
       lists => this.shoppingLists = lists
     );
+  }
+
+
+  deleteList(id: string): void {
+    if (confirm('Are you sure you want to delete this shopping list?')) {
+      this.service.deleteShoppingList(id).subscribe({
+        next: () => {
+          this.loadShoppingLists();
+        },
+        error: (error) => {
+          console.error('Error deleting shopping list:', error);
+        }
+      });
+    }
   }
 }

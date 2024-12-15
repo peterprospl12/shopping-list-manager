@@ -1,0 +1,31 @@
+<article class="form-container">
+    <h2>Edit Shopping List</h2>
+    <form #editForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">List Name:</label>
+        <input 
+          id="name" 
+          type="text" 
+          [(ngModel)]="shoppingList.name" 
+          name="name" 
+          required
+          placeholder="Enter list name">
+      </div>
+  
+      <div class="form-group">
+        <label for="status">Status:</label>
+        <select 
+          id="status" 
+          [(ngModel)]="shoppingList.status" 
+          name="status" 
+          required>
+          <option *ngFor="let status of statuses" [value]="status">{{status}}</option>
+        </select>
+      </div>
+  
+      <div class="form-actions">
+        <button type="submit" [disabled]="!editForm.valid">Update List</button>
+        <button type="button" (click)="onCancel()" class="cancel-button">Cancel</button>
+      </div>
+    </form>
+</article>

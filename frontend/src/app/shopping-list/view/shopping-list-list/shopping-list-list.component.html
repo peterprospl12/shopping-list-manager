@@ -1,21 +1,36 @@
 <article class="text--justified">
-    <header><h2>Shopping Lists</h2></header>
-  
-    <table *ngIf="shoppingLists">
+  <header>
+      <h2>Shopping Lists</h2>
+      <a [routerLink]="['/shopping-lists/create']" class="create-button">
+          <i class="fas fa-plus"></i> Create New List
+      </a>
+  </header>
+
+  <table *ngIf="shoppingLists">
       <thead>
-        <tr>
-          <th>Name</th>
-          <th>Actions</th>
-        </tr>
+          <tr>
+              <th>Name</th>
+              <th>Actions</th>
+          </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let list of shoppingLists.shoppingLists">
-          <td>{{list.name}}</td>
-          <td>
-            <a [routerLink]="['/shopping-lists', list.id, 'details']">List details</a> |
-            <a [routerLink]="['/shopping-lists', list.id, 'products']">Show products</a>
-          </td>
-        </tr>
+          <tr *ngFor="let list of shoppingLists.shoppingLists">
+              <td>{{list.name}}</td>
+              <td class="action-links">
+                  <a [routerLink]="['/shopping-lists', list.id, 'details']">
+                      <i class="fas fa-info-circle"></i>Details
+                  </a>
+                  <a [routerLink]="['/shopping-lists', list.id, 'products']">
+                      <i class="fas fa-shopping-basket"></i>Products
+                  </a>
+                  <a [routerLink]="['/shopping-lists', list.id, 'edit']">
+                      <i class="fas fa-edit"></i>Edit
+                  </a>
+                  <a href="javascript:void(0)" (click)="deleteList(list.id)" class="delete-link">
+                    <i class="fas fa-trash"></i>Delete
+                </a>
+              </td>
+          </tr>
       </tbody>
-    </table>
+  </table>
 </article>

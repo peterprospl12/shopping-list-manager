@@ -1,5 +1,10 @@
-<article>
-    <h2>Products in Shopping List</h2>
+<article class="text--justified">
+    <header>
+        <h2>Products in Shopping List</h2>
+        <a [routerLink]="['/products/create', shoppingListId]" class="create-button">
+            <i class="fas fa-plus"></i> Add New Product
+        </a>
+    </header>
     <table *ngIf="products.length > 0">
         <thead>
             <tr>
@@ -10,8 +15,13 @@
         <tbody>
             <tr *ngFor="let product of products">
                 <td>{{product.name}}</td>
-                <td>
-                    <a [routerLink]="['/products', product.id]">Show details</a>
+                <td class="action-links">
+                    <a [routerLink]="['/products', product.id]">
+                        <i class="fas fa-info-circle"></i> Details
+                    </a>
+                    <a href="javascript:void(0)" (click)="deleteProduct(product.id)" class="delete-link">
+                        <i class="fas fa-trash"></i>Delete
+                    </a>
                 </td>
             </tr>
         </tbody>

@@ -10,20 +10,28 @@ import { ShoppingListService } from './shopping-list/service/shopping-list.servi
 import { ShoppingListViewComponent } from './shopping-list/view/shopping-list-view/shopping-list-view.component';
 import { ProductService } from './product/service/product.service';
 import { ProductViewComponent } from './product/view/product-view/product-view.component';
+import { ShoppingListCreateComponent } from './shopping-list/view/shopping-list-create/shopping-list-create.component';
+import { FormsModule } from '@angular/forms';
+import { ShoppingListEditComponent } from './shopping-list/view/shopping-list-edit/shopping-list-edit.component';
+import { ProductCreateComponent } from './product/view/product-create/product-create.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductListComponent,
     ShoppingListListComponent,
     ShoppingListDetailsViewComponent,
     ShoppingListViewComponent,
-    ProductViewComponent
+    ShoppingListCreateComponent,
+    ShoppingListEditComponent,
+    ProductViewComponent,
+    ProductListComponent,
+    ProductCreateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     ShoppingListService,

@@ -4,10 +4,12 @@ import org.springframework.http.ResponseEntity;
 import shopping.list.manager.shoppinglistservice.shoppingList.controller.api.ShoppingListController;
 import shopping.list.manager.shoppinglistservice.shoppingList.dto.GetShoppingListResponse;
 import shopping.list.manager.shoppinglistservice.shoppingList.dto.GetShoppingListsResponse;
+import shopping.list.manager.shoppinglistservice.shoppingList.dto.PatchShoppingListRequest;
 import shopping.list.manager.shoppinglistservice.shoppingList.dto.PutShoppingListRequest;
 import shopping.list.manager.shoppinglistservice.shoppingList.function.RequestToShoppingListFunction;
 import shopping.list.manager.shoppinglistservice.shoppingList.function.ShoppingListToResponseFunction;
 import shopping.list.manager.shoppinglistservice.shoppingList.function.ShoppingListsToResponseFunction;
+import shopping.list.manager.shoppinglistservice.shoppingList.function.UpdateShoppingListWithRequestFunction;
 import shopping.list.manager.shoppinglistservice.shoppingList.service.api.ShoppingListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,16 +25,18 @@ public class ShoppingListDefaultController implements ShoppingListController {
     private final ShoppingListToResponseFunction shoppingListToResponse;
     private final ShoppingListsToResponseFunction shoppingListsToResponse;
     private final RequestToShoppingListFunction requestToShoppingList;
+    private final UpdateShoppingListWithRequestFunction updateShoppingListWithRequestFunction;
 
     @Autowired
     public ShoppingListDefaultController(ShoppingListService shoppingListService,
                                          ShoppingListToResponseFunction shoppingListToResponse,
                                          ShoppingListsToResponseFunction shoppingListsToResponse,
-                                         RequestToShoppingListFunction requestToShoppingList) {
+                                         RequestToShoppingListFunction requestToShoppingList, UpdateShoppingListWithRequestFunction updateShoppingListWithRequestFunction) {
         this.service = shoppingListService;
         this.shoppingListToResponse = shoppingListToResponse;
         this.shoppingListsToResponse = shoppingListsToResponse;
         this.requestToShoppingList = requestToShoppingList;
+        this.updateShoppingListWithRequestFunction = updateShoppingListWithRequestFunction;
     }
 
 
@@ -59,6 +63,11 @@ public class ShoppingListDefaultController implements ShoppingListController {
     @Override
     public void putShoppingList(UUID id, PutShoppingListRequest request) {
         service.create(requestToShoppingList.apply(id, request));
+    }
+
+    @Override
+    public void patchShoppingList(UUID id, PatchShoppingListRequest request) {
+        service.update(updateShoppingListWithRequestFunction.apply(service.find(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)), request));
     }
 
     @Override

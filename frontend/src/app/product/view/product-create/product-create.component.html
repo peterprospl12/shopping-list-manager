@@ -1,0 +1,65 @@
+<article class="form-container">
+    <h2>Create New Product</h2>
+    <form (ngSubmit)="onSubmit()" #createForm="ngForm">
+      <div class="form-group">
+        <label for="name">Product Name:</label>
+        <input 
+          id="name" 
+          type="text" 
+          [(ngModel)]="product.name" 
+          name="name" 
+          required
+          placeholder="Enter product name">
+      </div>
+  
+      <div class="form-group">
+        <label for="category">Category:</label>
+        <select 
+          id="category" 
+          [(ngModel)]="product.category" 
+          name="category" 
+          required>
+          <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="price">Product Price:</label>
+        <input 
+          id="price" 
+          type="number" 
+          [(ngModel)]="product.price" 
+          name="price" 
+          required
+          placeholder="Enter product price">
+      </div>
+
+      <div class="form-group">
+        <label for="quantity">Product Quantity:</label>
+        <input 
+          id="quantity" 
+          type="number" 
+          [(ngModel)]="product.quantity" 
+          name="quantity" 
+          required
+          placeholder="Enter product quantity">
+      </div>
+
+    <div class="form-group">
+      <label for="isBought">Product isBought:</label>
+      <select 
+        id="isBought" 
+        [(ngModel)]="product.isBought" 
+        name="isBought" 
+        required>
+        <option [value]="true">Yes</option>
+        <option [value]="false">No</option>
+      </select>
+    </div>
+  
+      <div class="form-actions">
+        <button type="submit" [disabled]="!createForm.form.valid">Create Product</button>
+        <button type="button" (click)="onCancel()" class="cancel-button">Cancel</button>
+      </div>
+    </form>
+  </article>

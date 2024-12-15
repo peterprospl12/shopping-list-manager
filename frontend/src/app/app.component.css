@@ -1,21 +1,35 @@
+/* Existing nav styles remain unchanged */
 nav {
-    background-color: var(--primary-color);
-    padding: 1rem;
-    margin-bottom: 2rem;
-    display: flex;
-    justify-content: center;
-  }
-  
-  nav a {
-    color: #fff;
-    margin: 0 1rem;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    transition: background-color 0.3s, transform 0.3s;
-  }
-  
-  nav a:hover {
-    background-color: var(--secondary-color);
-    transform: scale(1.05);
-  }
+  background-color: var(--primary-color);
+  padding: 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+nav a {
+  color: #fff;
+  margin: 0 1rem;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+nav a:hover {
+  background-color: var(--secondary-color);
+  transform: scale(1.05);
+}
+
+table th {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 2px solid var(--secondary-color);
+  transition: background-color 0.3s;
+}
+
+table th:hover {
+  background-color: var(--secondary-color);
+}
