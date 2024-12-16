@@ -36,7 +36,7 @@ export class ShoppingListService {
   }
 
   updateShoppingList(shoppingList: ShoppingListDetails): Observable<void> {
-    return this.http.put<void>(`${this.apiUrl}/${shoppingList.id}`, shoppingList);
+    return this.http.patch<void>(`${this.apiUrl}/${shoppingList.id}`, shoppingList);
   }
 
   deleteShoppingList(id: string): Observable<void> {

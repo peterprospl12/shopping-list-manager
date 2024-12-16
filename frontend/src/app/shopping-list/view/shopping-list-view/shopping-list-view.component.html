@@ -19,6 +19,9 @@
                     <a [routerLink]="['/products', product.id]">
                         <i class="fas fa-info-circle"></i> Details
                     </a>
+                    <a [routerLink]="['/products', product.id, 'edit']">
+                        <i class="fas fa-edit"></i> Edit
+                    </a>
                     <a href="javascript:void(0)" (click)="deleteProduct(product.id)" class="delete-link">
                         <i class="fas fa-trash"></i>Delete
                     </a>

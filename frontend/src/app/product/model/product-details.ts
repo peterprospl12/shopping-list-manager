@@ -1,5 +1,3 @@
-import {ShoppingList} from '../../shopping-list/model/shopping-list';
-
 export interface ProductDetails {
   id: string;
   name: string;
@@ -7,5 +5,5 @@ export interface ProductDetails {
   price: number;
   quantity: number;
   isBought: boolean;
-  shoppingList: ShoppingList;
+  shoppingListId: string;
 }

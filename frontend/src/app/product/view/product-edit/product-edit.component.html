@@ -1,0 +1,66 @@
+<!-- product-edit.component.html -->
+<article class="form-container">
+    <h2>Edit Product</h2>
+    <form #editForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="name">Product Name:</label>
+            <input 
+                id="name" 
+                type="text" 
+                [(ngModel)]="product.name" 
+                name="name" 
+                required
+                placeholder="Enter product name">
+        </div>
+
+        <div class="form-group">
+            <label for="category">Category:</label>
+            <select 
+                id="category" 
+                [(ngModel)]="product.category" 
+                name="category" 
+                required>
+                <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="price">Price:</label>
+            <input 
+                id="price" 
+                type="number" 
+                [(ngModel)]="product.price" 
+                name="price" 
+                required
+                min="0"
+                step="0.01">
+        </div>
+
+        <div class="form-group">
+            <label for="quantity">Quantity:</label>
+            <input 
+                id="quantity" 
+                type="number" 
+                [(ngModel)]="product.quantity" 
+                name="quantity" 
+                required
+                min="1">
+        </div>
+
+        <div class="form-group checkbox-group">
+            <label for="isBought">
+                <input 
+                    id="isBought" 
+                    type="checkbox" 
+                    [(ngModel)]="product.isBought" 
+                    name="isBought">
+                Is Bought
+            </label>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" [disabled]="!editForm.valid">Update Product</button>
+            <button type="button" (click)="onCancel()" class="cancel-button">Cancel</button>
+        </div>
+    </form>
+</article>

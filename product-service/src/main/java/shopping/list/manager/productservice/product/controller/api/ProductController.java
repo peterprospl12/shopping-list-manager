@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import shopping.list.manager.productservice.product.dto.GetProductResponse;
 import shopping.list.manager.productservice.product.dto.GetProductsResponse;
+import shopping.list.manager.productservice.product.dto.PatchProductRequest;
 import shopping.list.manager.productservice.product.dto.PutProductRequest;
 
 import java.util.UUID;
@@ -35,6 +36,10 @@ public interface ProductController {
     @PutMapping("api/products/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     void putProduct(@PathVariable("id") UUID id, @RequestBody PutProductRequest request);
+
+    @PatchMapping("api/products/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    void patchProduct(@PathVariable("id") UUID id, @RequestBody PatchProductRequest request);
 
     @DeleteMapping("api/products/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

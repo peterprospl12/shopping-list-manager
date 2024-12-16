@@ -16,6 +16,7 @@ public class UpdateShoppingListWithRequestFunction implements BiFunction<Shoppin
                 .name(request.getName())
                 .status(request.getStatus())
                 .date(entity.getDate())
+                .userId(entity.getUserId())
                 .build();
     }
 }

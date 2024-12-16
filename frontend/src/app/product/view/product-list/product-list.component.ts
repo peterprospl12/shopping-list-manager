@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {ProductService} from '../../service/product.service';
-import {Products} from '../../model/products';
-import {Product} from '../../model/product';
+import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../../service/product.service';
+import { Products } from '../../model/products';
+import { Product } from '../../model/product';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -17,11 +17,23 @@ export class ProductListComponent implements OnInit {
   products: Products | undefined;
 
   ngOnInit(): void {
+    this.loadProducts();
+  }
+
+  loadProducts(): void {
     this.service.getProducts().subscribe(products => this.products = products);
   }
 
-  // onDelete(product: Product): void {
-  //   this.service.deleteProduct(product).subscribe
-  //   });
-
+  deleteProduct(id: string): void {
+    if (confirm('Are you sure you want to delete this product?')) {
+      this.service.deleteProduct(id).subscribe({
+        next: () => {
+          this.loadProducts();
+        },
+        error: (error) => {
+          console.error('Error deleting product:', error);
+        }
+      });
+    }
+  }
 }

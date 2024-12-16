@@ -14,6 +14,7 @@ import { ShoppingListCreateComponent } from './shopping-list/view/shopping-list-
 import { FormsModule } from '@angular/forms';
 import { ShoppingListEditComponent } from './shopping-list/view/shopping-list-edit/shopping-list-edit.component';
 import { ProductCreateComponent } from './product/view/product-create/product-create.component';
+import { ProductEditComponent } from './product/view/product-edit/product-edit.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ProductCreateComponent } from './product/view/product-create/product-cr
     ShoppingListEditComponent,
     ProductViewComponent,
     ProductListComponent,
-    ProductCreateComponent
+    ProductCreateComponent,
+    ProductEditComponent
   ],
   imports: [
     BrowserModule,

@@ -17,8 +17,8 @@ export class ProductService {
     return this.http.get<Products>(this.apiUrl);
   }
 
-  getProduct(uuid: string): Observable<ProductDetails> {
-    return this.http.get<ProductDetails>(`${this.apiUrl}/${uuid}`);
+  getProduct(id: string): Observable<ProductDetails> {
+    return this.http.get<ProductDetails>(`${this.apiUrl}/${id}`);
   }
 
   createProduct(product: ProductCreate): Observable<void> {
@@ -26,7 +26,12 @@ export class ProductService {
     return this.http.put<void>(url, product);
   }
 
-  deleteProduct(uuid: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${uuid}`);
+  updateProduct(product: ProductDetails): Observable<void> {
+    console.log(product);
+    return this.http.patch<void>(`${this.apiUrl}/${product.id}`, product);
+  }
+
+  deleteProduct(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

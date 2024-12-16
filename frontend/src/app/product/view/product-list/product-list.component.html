@@ -1,28 +1,30 @@
 <article class="text--justified">
-  <header><h2>Products</h2></header>
+  <header>
+    <h2>Products</h2>
+  </header>
 
   <table *ngIf="products">
     <thead>
-    <tr>
-      <th>Name</th>
-      <th>View</th>
-      <th>Edit</th>
-      <th>Delete</th>
-    </tr>
+      <tr>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let product of products.products">
-      <td>{{product.name}}</td>
-      <td>
-        <a [routerLink]="['/products', product.id]">View</a>
-      </td>
-      <td>
-        <a [routerLink]="['/products', product.id, 'edit']">Edit</a>
-      </td>
-<!--      <td>-->
-<!--        <button (click)="onDelete(character)">Delete</button>-->
-<!--      </td>-->
-    </tr>
+      <tr *ngFor="let product of products.products">
+        <td>{{product.name}}</td>
+        <td class="action-links">
+          <a [routerLink]="['/products', product.id]">
+            <i class="fas fa-info-circle"></i> Details
+          </a>
+          <a [routerLink]="['/products', product.id, 'edit']">
+            <i class="fas fa-edit"></i> Edit
+          </a>
+          <a href="javascript:void(0)" (click)="deleteProduct(product.id)" class="delete-link">
+            <i class="fas fa-trash"></i> Delete
+          </a>
+        </td>
+      </tr>
     </tbody>
   </table>
 </article>

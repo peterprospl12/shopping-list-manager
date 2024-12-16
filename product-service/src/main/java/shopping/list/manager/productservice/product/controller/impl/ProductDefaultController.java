@@ -14,10 +14,12 @@ import org.springframework.web.server.ResponseStatusException;
 import shopping.list.manager.productservice.product.controller.api.ProductController;
 import shopping.list.manager.productservice.product.dto.GetProductResponse;
 import shopping.list.manager.productservice.product.dto.GetProductsResponse;
+import shopping.list.manager.productservice.product.dto.PatchProductRequest;
 import shopping.list.manager.productservice.product.dto.PutProductRequest;
 import shopping.list.manager.productservice.product.function.ProductToResponseFunction;
 import shopping.list.manager.productservice.product.function.ProductsToResponseFunction;
 import shopping.list.manager.productservice.product.function.RequestToProductFunction;
+import shopping.list.manager.productservice.product.function.UpdateProductWithRequestFunction;
 import shopping.list.manager.productservice.product.service.api.ProductService;
 
 import java.util.UUID;
@@ -29,16 +31,18 @@ public class ProductDefaultController implements ProductController {
     private final ProductToResponseFunction productToResponse;
     private final ProductsToResponseFunction productsToResponse;
     private final RequestToProductFunction requestToProduct;
+    private final UpdateProductWithRequestFunction updateProductWithRequestFunction;
 
     @Autowired
     public ProductDefaultController(ProductService service,
                                     ProductToResponseFunction productToResponse,
                                     ProductsToResponseFunction productsToResponse,
-                                    RequestToProductFunction requestToProduct) {
+                                    RequestToProductFunction requestToProduct, UpdateProductWithRequestFunction updateProductWithRequestFunction) {
         this.service = service;
         this.productToResponse = productToResponse;
         this.productsToResponse = productsToResponse;
         this.requestToProduct = requestToProduct;
+        this.updateProductWithRequestFunction = updateProductWithRequestFunction;
     }
 
     @Override
@@ -77,6 +81,11 @@ public class ProductDefaultController implements ProductController {
             product -> service.delete(id),
             () -> { throw new ResponseStatusException(HttpStatus.NOT_FOUND); }
         );
+    }
+
+    @Override
+    public void patchProduct(UUID id, PatchProductRequest request) {
+        service.update(updateProductWithRequestFunction.apply(service.find(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)), request));
     }
 
     @Override

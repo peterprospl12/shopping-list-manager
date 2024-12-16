@@ -8,6 +8,7 @@ import { ProductViewComponent } from './product/view/product-view/product-view.c
 import { ShoppingListCreateComponent } from './shopping-list/view/shopping-list-create/shopping-list-create.component';
 import { ShoppingListEditComponent } from './shopping-list/view/shopping-list-edit/shopping-list-edit.component';
 import { ProductCreateComponent } from './product/view/product-create/product-create.component';
+import { ProductEditComponent } from './product/view/product-edit/product-edit.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path: 'products/create/:shoppingListId',
     component: ProductCreateComponent
+  },
+  {
+    path: 'products/:id/edit',
+    component: ProductEditComponent
   },
   {
     path: 'products/:id',

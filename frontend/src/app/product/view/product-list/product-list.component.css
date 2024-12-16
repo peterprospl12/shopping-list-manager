@@ -1,22 +1,65 @@
 .text--justified {
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  
-  h2 {
-    color: var(--text-color);
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 10px;
-    text-align: center;
-  }
-  
-  a {
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  
-  a:hover {
-    color: var(--secondary-color);
-    text-decoration: underline;
-  }
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+h2 {
+  color: var(--text-color);
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+th {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 12px;
+  text-align: left;
+}
+
+td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.action-links a {
+  color: var(--primary-color);
+  text-decoration: none;
+  margin-right: 15px;
+  font-size: 0.9em;
+  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.action-links a:hover {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+.action-links i {
+  margin-right: 5px;
+}
+
+.delete-link {
+  color: #dc3545 !important;
+  cursor: pointer;
+}
+
+.delete-link:hover {
+  color: #c82333 !important;
+}
