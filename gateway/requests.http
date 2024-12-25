@@ -1,4 +1,4 @@
-### SERVICES HAVE TO STARTED IN CORRECT ORDER
+### SERVICES HAVE TO START IN CORRECT ORDER
 
 ### Get all products
 GET http://localhost:8084/api/products
