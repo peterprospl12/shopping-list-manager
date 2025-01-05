@@ -10,12 +10,13 @@ import { ShoppingListCreate } from '../model/shopping-list-create.model';
   providedIn: 'root'
 })
 export class ShoppingListService {
-  private apiUrl = 'api/shopping-lists';
+  private apiUrl = 'http://localhost:8084/api/shopping-lists';
 
   constructor(private http: HttpClient) { }
 
   getShoppingLists(): Observable<ShoppingLists> {
-    return this.http.get<ShoppingLists>(this.apiUrl);
+    console.log('Fetching shopping lists from:', this.apiUrl);
+    return this.http.get<ShoppingLists>(this.apiUrl);    
   }
 
   getShoppingListDetails(id: string): Observable<ShoppingListDetails> {
