@@ -30,20 +30,36 @@ services:
       dockerfile: Dockerfile
     environment:
       - SPRING_PROFILES_ACTIVE=prod
-      - DATABASE_URL=jdbc:mysql://db:3306/userdb
+      - DATABASE_URL=jdbc:mysql://userdb:3306/userdb
       - DATABASE_USERNAME=root
       - DATABASE_PASSWORD=root
       - SERVER_PORT=8080
       - GATEWAY_URL=http://localhost:8084/
     depends_on:
-      - gateway
+      userdb:
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://user-service:8080/actuator/health"]
       interval: 5s
       timeout: 30s
       retries: 30
     container_name: user-service
-    
+
+  userdb:
+    image: mysql:8.0
+    container_name: userdb
+    environment:
+      - MYSQL_DATABASE=userdb
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3307:3306"
+    volumes:
+      - userdb_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
 
   shopping-list-service:
     build:
@@ -51,7 +67,7 @@ services:
       dockerfile: Dockerfile
     environment:
       - SPRING_PROFILES_ACTIVE=prod
-      - DATABASE_URL=jdbc:mysql://db:3306/shoppinglistdb
+      - DATABASE_URL=jdbc:mysql://shoppinglistdb:3306/shoppinglistdb
       - DATABASE_USERNAME=root
       - DATABASE_PASSWORD=root
       - SERVER_PORT=8080
@@ -59,11 +75,29 @@ services:
     depends_on:
       user-service:
         condition: service_healthy
+      shoppinglistdb:
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://shopping-list-service:8080/actuator/health"]
       interval: 5s
       timeout: 30s
       retries: 30
+
+  shoppinglistdb:
+    image: mysql:8.0
+    container_name: shoppinglistdb
+    environment:
+      - MYSQL_DATABASE=shoppinglistdb  
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3308:3306"
+    volumes:
+      - shoppinglistdb_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
 
   product-service:
     build:
@@ -71,7 +105,7 @@ services:
       dockerfile: Dockerfile
     environment:
       - SPRING_PROFILES_ACTIVE=prod
-      - DATABASE_URL=jdbc:mysql://db:3306/productdb
+      - DATABASE_URL=jdbc:mysql://productdb:3306/productdb
       - DATABASE_USERNAME=root
       - DATABASE_PASSWORD=root
       - SERVER_PORT=8080
@@ -79,8 +113,31 @@ services:
     depends_on:
       shopping-list-service:
         condition: service_healthy
+      productdb:
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://product-service:8080/actuator/health"]
       interval: 5s
       timeout: 30s
       retries: 30
+
+  productdb:
+      image: mysql:8.0
+      container_name: productdb
+      environment:
+        - MYSQL_DATABASE=productdb  
+        - MYSQL_ROOT_PASSWORD=root
+      ports:
+        - "3309:3306"
+      volumes:
+        - productdb_data:/var/lib/mysql
+      healthcheck:
+        test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+        interval: 5s
+        timeout: 5s
+        retries: 20
+
+volumes:
+  userdb_data:
+  shoppinglistdb_data:
+  productdb_data:
