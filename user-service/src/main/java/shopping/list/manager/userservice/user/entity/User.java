@@ -19,6 +19,7 @@ import java.util.UUID;
 public class User implements Serializable {
     @Id
     @Builder.Default
+    @Column(columnDefinition = "BINARY(16)")
     private UUID id = UUID.randomUUID();
 
     @Column(name = "email", unique = true)

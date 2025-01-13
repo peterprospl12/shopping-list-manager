@@ -29,7 +29,6 @@ services:
       context: ./user-service
       dockerfile: Dockerfile
     environment:
-      - SPRING_PROFILES_ACTIVE=prod
       - DATABASE_URL=jdbc:mysql://userdb:3306/userdb
       - DATABASE_USERNAME=root
       - DATABASE_PASSWORD=root
@@ -66,12 +65,11 @@ services:
       context: ./shopping-list-service
       dockerfile: Dockerfile
     environment:
-      - SPRING_PROFILES_ACTIVE=prod
       - DATABASE_URL=jdbc:mysql://shoppinglistdb:3306/shoppinglistdb
       - DATABASE_USERNAME=root
       - DATABASE_PASSWORD=root
       - SERVER_PORT=8080
-      - GATEWAY_URL=http://user-service:8080/
+      - USERSERVICE_URL=http://user-service:8080/
     depends_on:
       user-service:
         condition: service_healthy
@@ -104,12 +102,11 @@ services:
       context: ./product-service
       dockerfile: Dockerfile
     environment:
-      - SPRING_PROFILES_ACTIVE=prod
       - DATABASE_URL=jdbc:mysql://productdb:3306/productdb
       - DATABASE_USERNAME=root
       - DATABASE_PASSWORD=root
       - SERVER_PORT=8080
-      - GATEWAY_URL=http://shopping-list-service:8080/
+      - SHOPPING_LIST_SERVICE_URL=http://shopping-list-service:8080/
     depends_on:
       shopping-list-service:
         condition: service_healthy

@@ -20,6 +20,7 @@ import java.util.UUID;
 public class ShoppingList implements Serializable {
     @Id
     @Builder.Default
+    @Column(columnDefinition = "BINARY(16)")
     private UUID id = UUID.randomUUID();
 
     @Column(name = "name", unique = true)
